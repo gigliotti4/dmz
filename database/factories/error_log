@@ -1,0 +1,8 @@
+[20-Oct-2024 03:00:17 America/Santiago] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Eloquent\Factories\Factory" not found in /home/d3osolecom/public_html/eiacomponentes/database/factories/UserFactory.php:12
+Stack trace:
+#0 {main}
+  thrown in /home/d3osolecom/public_html/eiacomponentes/database/factories/UserFactory.php on line 12
+[06-Mar-2025 06:05:31 America/Santiago] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Eloquent\Factories\Factory" not found in /home/d3osolecom/public_html/gruas/database/factories/UserFactory.php:12
+Stack trace:
+#0 {main}
+  thrown in /home/d3osolecom/public_html/gruas/database/factories/UserFactory.php on line 12

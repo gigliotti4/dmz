@@ -1,0 +1,16 @@
+[06-Mar-2025 06:05:32 America/Santiago] PHP Fatal error:  Uncaught Error: Class "Illuminate\Mail\Mailable" not found in /home/d3osolecom/public_html/gruas/app/Mail/Carritopedido.php:12
+Stack trace:
+#0 {main}
+  thrown in /home/d3osolecom/public_html/gruas/app/Mail/Carritopedido.php on line 12
+[06-Mar-2025 06:05:44 America/Santiago] PHP Fatal error:  Uncaught Error: Class "Illuminate\Mail\Mailable" not found in /home/d3osolecom/public_html/gruas/app/Mail/ContactoMail.php:12
+Stack trace:
+#0 {main}
+  thrown in /home/d3osolecom/public_html/gruas/app/Mail/ContactoMail.php on line 12
+[06-Mar-2025 06:05:50 America/Santiago] PHP Fatal error:  Uncaught Error: Class "Illuminate\Mail\Mailable" not found in /home/d3osolecom/public_html/gruas/app/Mail/PresupuestoMail.php:12
+Stack trace:
+#0 {main}
+  thrown in /home/d3osolecom/public_html/gruas/app/Mail/PresupuestoMail.php on line 12
+[06-Mar-2025 06:05:55 America/Santiago] PHP Fatal error:  Uncaught Error: Class "Illuminate\Mail\Mailable" not found in /home/d3osolecom/public_html/gruas/app/Mail/CarritoPresupuesto.php:12
+Stack trace:
+#0 {main}
+  thrown in /home/d3osolecom/public_html/gruas/app/Mail/CarritoPresupuesto.php on line 12

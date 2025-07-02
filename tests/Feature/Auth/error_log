@@ -1,0 +1,36 @@
+[14-Oct-2024 23:48:09 America/Santiago] PHP Fatal error:  Uncaught Error: Class "Tests\TestCase" not found in /home/d3osolecom/public_html/eiacomponentes/tests/Feature/Auth/PasswordUpdateTest.php:10
+Stack trace:
+#0 {main}
+  thrown in /home/d3osolecom/public_html/eiacomponentes/tests/Feature/Auth/PasswordUpdateTest.php on line 10
+[21-Oct-2024 16:47:08 America/Santiago] PHP Fatal error:  Uncaught Error: Class "Tests\TestCase" not found in /home/d3osolecom/public_html/eiacomponentes/tests/Feature/Auth/AuthenticationTest.php:10
+Stack trace:
+#0 {main}
+  thrown in /home/d3osolecom/public_html/eiacomponentes/tests/Feature/Auth/AuthenticationTest.php on line 10
+[22-Oct-2024 01:28:20 America/Santiago] PHP Fatal error:  Uncaught Error: Class "Tests\TestCase" not found in /home/d3osolecom/public_html/eiacomponentes/tests/Feature/Auth/PasswordConfirmationTest.php:9
+Stack trace:
+#0 {main}
+  thrown in /home/d3osolecom/public_html/eiacomponentes/tests/Feature/Auth/PasswordConfirmationTest.php on line 9
+[06-Mar-2025 08:05:48 America/Santiago] PHP Fatal error:  Uncaught Error: Class "Tests\TestCase" not found in /home/d3osolecom/public_html/gruas/tests/Feature/Auth/RegistrationTest.php:9
+Stack trace:
+#0 {main}
+  thrown in /home/d3osolecom/public_html/gruas/tests/Feature/Auth/RegistrationTest.php on line 9
+[06-Mar-2025 08:05:49 America/Santiago] PHP Fatal error:  Uncaught Error: Class "Tests\TestCase" not found in /home/d3osolecom/public_html/gruas/tests/Feature/Auth/PasswordConfirmationTest.php:9
+Stack trace:
+#0 {main}
+  thrown in /home/d3osolecom/public_html/gruas/tests/Feature/Auth/PasswordConfirmationTest.php on line 9
+[06-Mar-2025 08:05:56 America/Santiago] PHP Fatal error:  Uncaught Error: Class "Tests\TestCase" not found in /home/d3osolecom/public_html/gruas/tests/Feature/Auth/PasswordUpdateTest.php:10
+Stack trace:
+#0 {main}
+  thrown in /home/d3osolecom/public_html/gruas/tests/Feature/Auth/PasswordUpdateTest.php on line 10
+[06-Mar-2025 08:05:56 America/Santiago] PHP Fatal error:  Uncaught Error: Class "Tests\TestCase" not found in /home/d3osolecom/public_html/gruas/tests/Feature/Auth/EmailVerificationTest.php:13
+Stack trace:
+#0 {main}
+  thrown in /home/d3osolecom/public_html/gruas/tests/Feature/Auth/EmailVerificationTest.php on line 13
+[06-Mar-2025 08:05:57 America/Santiago] PHP Fatal error:  Uncaught Error: Class "Tests\TestCase" not found in /home/d3osolecom/public_html/gruas/tests/Feature/Auth/AuthenticationTest.php:10
+Stack trace:
+#0 {main}
+  thrown in /home/d3osolecom/public_html/gruas/tests/Feature/Auth/AuthenticationTest.php on line 10
+[06-Mar-2025 08:05:59 America/Santiago] PHP Fatal error:  Uncaught Error: Class "Tests\TestCase" not found in /home/d3osolecom/public_html/gruas/tests/Feature/Auth/PasswordResetTest.php:11
+Stack trace:
+#0 {main}
+  thrown in /home/d3osolecom/public_html/gruas/tests/Feature/Auth/PasswordResetTest.php on line 11
