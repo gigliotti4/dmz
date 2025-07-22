@@ -30,7 +30,7 @@
       <div class="col-md-6">
      
           <h3 class="titulo__secciones">{{$empresa->titulo}}</h3>
-          <p class="contenido__descripcion mt-3">{!!$empresa->descripcion!!}</p>
+          <div class="contenido__descripcion custom-item mt-3">{!!$empresa->descripcion!!}</div>
           {{-- <a type="button" href="" class="btn btn__azul mb-2 px-5" >MÁS INFORMACIÓN</a> --}}
    
        </div>

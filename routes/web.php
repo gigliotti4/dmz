@@ -7,17 +7,20 @@ Route::get('/', [App\Http\Controllers\PageController::class, 'index'])->name('in
 Route::get('/empresa', [App\Http\Controllers\PageController::class, 'empresa'])->name('empresa');
 Route::get('/contacto', [App\Http\Controllers\PageController::class, 'contacto'])->name('contacto');
 Route::get('/servicios', [App\Http\Controllers\PageController::class, 'servicios'])->name('servicios');
-Route::get('/servicio/{id}', [App\Http\Controllers\PageController::class, 'servicio'])->name('servicio');
-Route::get('/procesos', [App\Http\Controllers\PageController::class, 'procesos'])->name('procesos');
+Route::get('/servicio/{slug}', [App\Http\Controllers\PageController::class, 'servicio'])->name('servicio');
+// Categorías and Products
+Route::get('/categorias', [App\Http\Controllers\PageController::class, 'categorias'])->name('categorias');
+Route::get('/categoria/{slug}', [App\Http\Controllers\PageController::class, 'categoriaProductos'])->name('categoria.productos');
 Route::get('/productos', [App\Http\Controllers\PageController::class, 'productos'])->name('productos');
 Route::get('/producto/{slug}', [App\Http\Controllers\PageController::class, 'producto'])->name('producto');
+Route::get('/productos/categoria/{slug}', [App\Http\Controllers\PageController::class, 'productosPorCategoria'])->name('productos.categoria');
+
 Route::get('/novedades', [App\Http\Controllers\PageController::class, 'novedades'])->name('novedades');
 Route::get('/novedad/{id}', [App\Http\Controllers\PageController::class, 'novedad'])->name('novedad');
 Route::get('/filtroproducto', [App\Http\Controllers\PageController::class, 'filtroProducto'])->name('filtroproducto');
 Route::get('/buscar-productos', [App\Http\Controllers\PageController::class, 'search'])->name('productos.search');
 Route::post('/contacto/send', [App\Http\Controllers\PageController::class, 'sendContactoMail'])->name('contacto.send');
 Route::post('/presupuesto/send', [App\Http\Controllers\PageController::class, 'sendPresupuestoMail'])->name('presupuesto.send');
-Route::post('/newsletter', [App\Http\Controllers\PageController::class, 'newsletter'])->name('newsletter.send');
 
 // sitemap
 Route::get('/sitemap', [App\Http\Controllers\SitemapController::class, 'index'])->name('sitemap.index');
@@ -81,13 +84,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
         });
 
         // Proceso routes
-        Route::prefix('procesos')->name('procesos.')->group(function () {
-            Route::get('/', [App\Http\Controllers\admin\ProcesoController::class, 'index'])->name('index');
-            Route::get('/create', [App\Http\Controllers\admin\ProcesoController::class, 'create'])->name('create');
-            Route::post('/store', [App\Http\Controllers\admin\ProcesoController::class, 'store'])->name('store');
-            Route::get('/edit/{id}', [App\Http\Controllers\admin\ProcesoController::class, 'edit'])->name('edit');
-            Route::put('/update/{id}', [App\Http\Controllers\admin\ProcesoController::class, 'update'])->name('update');
-            Route::delete('destroy/{id}', [App\Http\Controllers\admin\ProcesoController::class, 'destroy'])->name('destroy');
+        Route::prefix('categorias')->name('categorias.')->group(function () {
+            Route::get('/', [App\Http\Controllers\admin\CategoriasController::class, 'index'])->name('index');
+            Route::get('/create', [App\Http\Controllers\admin\CategoriasController::class, 'create'])->name('create');
+            Route::post('/store', [App\Http\Controllers\admin\CategoriasController::class, 'store'])->name('store');
+            Route::get('/edit/{id}', [App\Http\Controllers\admin\CategoriasController::class, 'edit'])->name('edit');
+            Route::put('/update/{id}', [App\Http\Controllers\admin\CategoriasController::class, 'update'])->name('update');
+            Route::delete('destroy/{id}', [App\Http\Controllers\admin\CategoriasController::class, 'destroy'])->name('destroy');
         });
 
         Route::prefix('novedades')->name('novedades.')->group(function () {

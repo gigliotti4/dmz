@@ -44,11 +44,11 @@
         </div>
       </a>
    
-      <div id="collapsEmpresa" class="collapse">
+      {{-- <div id="collapsEmpresa" class="collapse">
         <nav class="sidenav-menu-nested nav accordion">
           <a href="{{ route('admin.slider.index', ['seccion' => 'empresa']) }}" class="nav-link  ">Slider</a>
         </nav>
-      </div>
+      </div> --}}
       <div id="collapsEmpresa" class="collapse">
         <nav class="sidenav-menu-nested nav accordion">
           <a href="{{ route('admin.empresa.edit', ['id' => 1]) }}" class="nav-link  ">Contenido</a>
@@ -69,11 +69,11 @@
         </div>
       </a>
    
-      <div id="collapseServicio" class="collapse">
+      {{-- <div id="collapseServicio" class="collapse">
         <nav class="sidenav-menu-nested nav accordion">
           <a href="{{ route('admin.slider.index', ['seccion' => 'servicios']) }}" class="nav-link  ">Slider</a>
         </nav>
-      </div>   
+      </div>    --}}
    
       <div id="collapseServicio" class="collapse">
         <nav class="sidenav-menu-nested nav accordion">
@@ -82,30 +82,7 @@
       </div>   
     </li>
 
-    <li class="sidebar-item">
-      <a href="" class="nav-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapseProceso" aria-expanded="false" aria-controls="colappseProceso">
-        <div class="nav-link-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-diagram-3" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M6 3.5A1.5 1.5 0 0 1 7.5 2h1A1.5 1.5 0 0 1 10 3.5v1A1.5 1.5 0 0 1 8.5 6v1H14a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-1 0V8h-5v.5a.5.5 0 0 1-1 0V8h-5v.5a.5.5 0 0 1-1 0v-1A.5.5 0 0 1 2 7h5.5V6A1.5 1.5 0 0 1 6 4.5v-1zM8.5 5a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1zM0 11.5A1.5 1.5 0 0 1 1.5 10h1A1.5 1.5 0 0 1 4 11.5v1A1.5 1.5 0 0 1 2.5 14h-1A1.5 1.5 0 0 1 0 12.5v-1zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zm4.5.5A1.5 1.5 0 0 1 7.5 10h1a1.5 1.5 0 0 1 1.5 1.5v1A1.5 1.5 0 0 1 8.5 14h-1A1.5 1.5 0 0 1 6 12.5v-1zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zm4.5.5a1.5 1.5 0 0 1 1.5-1.5h1a1.5 1.5 0 0 1 1.5 1.5v1a1.5 1.5 0 0 1-1.5 1.5h-1a1.5 1.5 0 0 1-1.5-1.5v-1zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1z"/>
-          </svg>
-        </div>
-        <span>Procesos</span>
-        <div class="sidenav-collapse-arrow">
-          <i class="fa-solid fa-angle-down"></i>
-        </div>
-      </a>
-   
-      <div id="collapseProceso" class="collapse">
-        <nav class="sidenav-menu-nested nav accordion">
-          <a href="{{ route('admin.slider.index', ['seccion' => 'procesos']) }}" class="nav-link  ">Slider</a>
-        </nav>
-      </div>   
-      <div id="collapseProceso" class="collapse">
-        <nav class="sidenav-menu-nested nav accordion">
-          <a href="{{ route('admin.procesos.index') }}" class="nav-link ">procesos</a>
-        </nav>
-      </div>   
-    </li>
+
 
     <li class="sidebar-item">
       <a href="" class="nav-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapseProducto" aria-expanded="false" aria-controls="colappseProducto">
@@ -114,15 +91,20 @@
             <path d="M7.752.066a.5.5 0 0 1 .496 0l3.75 2.143a.5.5 0 0 1 .252.434v3.995l3.498 2A.5.5 0 0 1 16 9.07v4.286a.5.5 0 0 1-.252.434l-3.75 2.143a.5.5 0 0 1-.496 0l-3.502-2-3.502 2a.5.5 0 0 1-.496 0l-3.75-2.143A.5.5 0 0 1 0 13.357V9.071a.5.5 0 0 1 .252-.434L3.75 6.638V2.643a.5.5 0 0 1 .252-.434L7.752.066ZM4.25 7.504 1.508 9.071l2.742 1.567 2.742-1.567L4.25 7.504ZM7.5 9.933l-2.75 1.571v3.134l2.75-1.571V9.933Zm1 3.134 2.75 1.571v-3.134L8.5 9.933v3.134Zm.508-3.996 2.742 1.567 2.742-1.567-2.742-1.567-2.742 1.567Zm2.242-2.433V3.504L8.5 5.076V8.21l2.75-1.572ZM7.5 8.21V5.076L4.75 3.504v3.134L7.5 8.21ZM5.258 2.643 8 4.21l2.742-1.567L8 1.076 5.258 2.643ZM15 9.933l-2.75 1.571v3.134L15 13.067V9.933ZM3.75 14.638v-3.134L1 9.933v3.134l2.75 1.571Z"/>
           </svg>
         </div>
-        <span>Catalogos</span>
+        <span>Maquinas</span>
         <div class="sidenav-collapse-arrow">
           <i class="fa-solid fa-angle-down"></i>
         </div>
       </a>
    
-      <div id="collapseProducto" class="collapse">
+      {{-- <div id="collapseProducto" class="collapse">
         <nav class="sidenav-menu-nested nav accordion">
           <a href="{{ route('admin.slider.index', ['seccion' => 'productos']) }}" class="nav-link  ">Slider</a>
+        </nav>
+      </div>    --}}
+      <div id="collapseProducto" class="collapse">
+        <nav class="sidenav-menu-nested nav accordion">
+        <a href="{{ route('admin.categorias.index') }}" class="nav-link ">categorias</a> 
         </nav>
       </div>   
       <div id="collapseProducto" class="collapse">
@@ -140,17 +122,17 @@
             <path d="M2 3h10v2H2V3zm0 3h4v3H2V6zm0 4h4v1H2v-1zm0 2h4v1H2v-1zm5-6h2v1H7V6zm3 0h2v1h-2V6zM7 8h2v1H7V8zm3 0h2v1h-2V8zm-3 2h2v1H7v-1zm3 0h2v1h-2v-1zm-3 2h2v1H7v-1zm3 0h2v1h-2v-1z"/>
           </svg>
         </div>
-        <span>Blog</span>
+        <span>Novedades</span>
         <div class="sidenav-collapse-arrow">
           <i class="fa-solid fa-angle-down"></i>
         </div>
       </a>
 
-      <div id="collapseNovedades" class="collapse">
+      {{-- <div id="collapseNovedades" class="collapse">
         <nav class="sidenav-menu-nested nav accordion">
           <a href="{{ route('admin.slider.index', ['seccion' => 'novedades']) }}" class="nav-link  ">Slider</a>
         </nav>
-      </div>
+      </div> --}}
       <div id="collapseNovedades" class="collapse">
         <nav class="sidenav-menu-nested nav accordion">
           <a href="{{ route('admin.novedades.index') }}" class="nav-link ">Novedades</a>
@@ -182,11 +164,11 @@
           <i class="fa-solid fa-angle-down"></i>
         </div>
       </a>
-       <div id="collapseConfiguracion" class="collapse">
+       {{-- <div id="collapseConfiguracion" class="collapse">
         <nav class="sidenav-menu-nested nav accordion">
           <a href="{{ route('admin.slider.index', ['seccion' => 'contacto']) }}" class="nav-link  ">Slider</a>
         </nav>
-      </div>
+      </div> --}}
        <div id="collapseConfiguracion" class="collapse">
         <nav class="sidenav-menu-nested nav accordion">
           <a href="{{ route('admin.contacto.edit', ['id' => 1]) }}" class="nav-link ">Datos de Contacto</a>

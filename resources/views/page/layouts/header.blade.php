@@ -14,7 +14,7 @@
                     <a class="nav-link nav__menu__inicio {{ request()->routeIs('empresa') ? 'active__header' : '' }}" href="{{ route('empresa') }}">Empresa</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav__menu__inicio {{ request()->routeIs('productos', 'producto') ? 'active__header' : '' }}" href="{{ route('productos') }}">Maquinas</a>
+                    <a class="nav-link nav__menu__inicio {{ request()->routeIs('categorias', 'producto') ? 'active__header' : '' }}" href="{{ route('categorias') }}">Maquinas</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link nav__menu__inicio {{ request()->routeIs('servicios') ? 'active__header' : '' }}" href="{{ route('servicios') }}">Servicios</a>
@@ -52,7 +52,7 @@
                 <a class="nav-link nav__menu__inicio {{ request()->routeIs('servicios') ? 'active__header' : '' }}" href="{{ route('servicios') }}">Servicios</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link nav__menu__inicio {{ request()->routeIs('productos') ? 'active__header' : '' }}" href="{{ route('productos') }}">Maquinas</a>
+                <a class="nav-link nav__menu__inicio {{ request()->routeIs('categorias') ? 'active__header' : '' }}" href="{{ route('categorias') }}">Maquinas</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link nav__menu__inicio {{ request()->routeIs('novedades', 'novedad') ? 'active__header' : '' }}" href="{{ route('novedades') }}">Novedades</a>

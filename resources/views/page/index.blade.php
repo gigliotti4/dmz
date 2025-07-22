@@ -51,6 +51,31 @@
         @endforeach
     </div>
 </div>
+
+<div class="container my-5">
+ <h3 class="text-center mb-5 titulo-secciones" data-aos="fade-up">Nuestras Categorías</h3>
+
+    <div class="row mt-4">
+        @foreach($categorias as $categoria)
+        <div class="col-md-6 mb-4">
+            <a href="{{ route('categoria.productos', $categoria->slug) }}" class="text-decoration-none">
+                <div class="card">
+                    <div class="card-img-categoria">
+                        <div class="card-img-inner" style="background-image: url('{{ asset(Storage::url($categoria->imagen)) }}')"></div>
+                        <div class="card-content">
+                            <h5>{{ $categoria->nombre }}</h5>
+                            <span class="ver-mas-link">Ver más <i class="fas fa-arrow-right"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        @endforeach
+    </div>
+</div>
+
+
+
         
 {{-- servicios --}}
 
@@ -90,47 +115,21 @@
 
 
 
-{{-- productos --}}
-<div class="container my-5" >
-    <h3 class="text-center titulo-secciones" data-aos="fade-up">Échale un vistazo a nuestros catálogos.</h3>
-    
-    <div class="row mt-5">
-        @foreach($productos as $index => $producto)
-        <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="{{ $index * 100 }}" data-aos-duration="800">
-            <a href="{{route('producto', $producto->slug)}}" class="text-decoration-none text-dark">
-                <div class="card h-100 border-0 shadow-sm">
-                    <!-- Imagen de la Categoría con efecto zoom -->
-                    <div class="card-img-categoria">
-                        <div class="card-img-inner" style="background-image: url('{{ asset(Storage::url($producto->imagen)) }}');"></div>
-                        <!-- Contenido con título y ver más -->
-                        <div class="card-content">
-                            <h5 class="text-white m-0">{{ $producto->nombre }}</h5>
-                            <span class="ver-mas-link">Ver más <i class="fas fa-arrow-right"></i></span>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-        @endforeach
-        <div class="text-center mt-5" data-aos="zoom-in" data-aos-delay="200">
-            <a type="button" href="{{ route('productos') }}" class="btn btn__black mb-2">Ver todos</a>
-        </div>
-    </div>
-</div>
+
 
 {{-- Contenido Inicio --}}
 <div class="mt-5 container-fluid" style="overflow: hidden" >
     <div class="row">
-        <div class="col-md-5" style="background-color: #EEEEEE; display: flex; align-items: center; height: 600px;">
+        <div class="col-md-6" style="background-color: #EEEEEE; display: flex; align-items: center; height: 600px;">
             <div class="p-5 text-left" data-aos="fade-up" data-aos-duration="1500">
                 <h3 class="contenido__subtitulo">Sobre Nosotros</h3>
-                <h3 class="contenido__titulo">{{$inicio->titulo}}</h3>
+                <h3 class="contenido__titulo pe-5">{{$inicio->titulo}}</h3>
                 <div class="contenido__descripcion my-5">{!!$inicio->descripcion!!}</div>
                 <a type="button" href="{{ route('empresa') }}" class="carousel-btn">Conoce más</a>
             </div>
         </div>
 
-        <div class="col-md-7 p-0">
+        <div class="col-md-6 p-0">
             <div style="background-image: url('{{asset(Storage::url($inicio->imagen))}}');
             background-repeat:no-repeat;
             background-position:center;

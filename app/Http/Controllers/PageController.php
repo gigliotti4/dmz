@@ -9,7 +9,7 @@ use App\Models\Rede;
 use App\Models\Slider;
 use App\Models\Producto;
 use App\Models\Servicio;
-use App\Models\Proceso;
+use App\Models\Categoria;
 use App\Models\Novedades;
 use App\Models\FormularioContacto;
 use Illuminate\Support\Facades\Mail;
@@ -36,13 +36,13 @@ class PageController extends Controller
     $servicios = Servicio::orderBy('orden', 'asc')->take(4)->get();
     $novedades = Novedades::orderBy('orden', 'asc')->get();
     $productos = Producto::orderBy('orden', 'asc')->get();
-  
+    $categorias = Categoria::orderBy('orden', 'asc')->where('destacado', 1)->get();
     $contacto = Contacto::first(); // Si sólo hay un contacto, puedes usar first()
     $sliders = Slider::where('seccion', 'inicio')->get();
     $metadata = Metadata::where('section', 'inicio')->first();
 
     // Pasar los datos a la vista
-    return view('page.index', compact('inicio', 'redes', 'contacto', 'sliders', 'logo', 'servicios', 'productos', 'novedades', 'metadata'));
+    return view('page.index', compact('inicio', 'redes', 'contacto', 'sliders', 'logo', 'servicios', 'productos', 'novedades', 'metadata', 'categorias'));
     }
 
 
@@ -75,6 +75,21 @@ class PageController extends Controller
         
     }
     
+    public function servicio($slug){
+        // Obtener los datos de los modelos
+        $logo = Logo::first();
+        $inicio = Inicio::first();
+        $servicio = Servicio::where('slug', $slug)->firstOrFail(); // Buscar el servicio por el slug
+        $redes = Rede::first();
+        $contacto = Contacto::first(); // Si sólo hay un contacto, puedes usar first()
+        $sliders = Slider::where('seccion', 'servicios')->get();
+        $metadata = Metadata::where('section', 'servicios')->first();
+        
+        // Pasar los datos a la vista
+        return view('page.servicio', compact('servicio', 'redes', 'contacto', 'logo', 'sliders', 'inicio', 'metadata'));
+        
+    }
+    
 
   
     public function search(Request $request)
@@ -101,22 +116,51 @@ class PageController extends Controller
         return view('page.resultado', compact('productos', 'logo', 'redes', 'contacto', 'metadata'));
     }
     
-    public function procesos()
+    public function categorias()
     {
         // Obtener los datos generales para la vista
         $logo = Logo::first();
         $inicio = Inicio::first();
         $redes = Rede::first();
         $contacto = Contacto::first();
-        $sliders = Slider::where('seccion', 'procesos')->get();
-        // Obtener todas las procesos  
-        $procesos = Proceso::orderBy('orden', 'asc')->get();
-        $metadata = Metadata::where('section', 'procesos')->first();
+        $sliders = Slider::where('seccion', 'categorias')->get();
+        // Obtener todas las categorias  
+        $categorias = Categoria::orderBy('orden', 'asc')->get();
+        $metadata = Metadata::where('section', 'categorias')->first();
     
         // Pasar los datos a la vista
-        return view('page.procesos', compact('inicio', 'redes', 'contacto', 'logo', 'procesos', 'sliders', 'metadata'));
+        return view('page.categorias', compact('inicio', 'redes', 'contacto', 'logo', 'categorias', 'sliders', 'metadata'));
     }
     
+    public function categoriaProductos($slug)
+    {
+        // Obtener los datos generales
+        $logo = Logo::first();
+        $redes = Rede::first();
+        $contacto = Contacto::first();
+        
+        // Buscar la categoría por slug
+        $categoria = Categoria::where('slug', $slug)->firstOrFail();
+        
+        // Obtener los productos de esa categoría
+        $productos = Producto::where('categoria_id', $categoria->id)
+                    ->orderBy('orden', 'asc')
+                    ->get();
+        
+        $sliders = Slider::where('seccion', 'categorias')->get();
+        $metadata = Metadata::where('section', 'categorias')->first();
+    
+        // Pasar los datos a la vista
+        return view('page.categoria-productos', compact(
+            'productos', 
+            'categoria', 
+            'logo', 
+            'redes', 
+            'contacto', 
+            'sliders', 
+            'metadata'
+        ));
+    }
 
     public function productos()
     {

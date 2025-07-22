@@ -95,6 +95,19 @@
     }
 </style>
 
+<div class="bg__breadcrumb">
+
+  <div class="container">
+      <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{route('index')}}" class="breadcrumb-item">Inicio</a></li>
+            <li class="breadcrumb-item active" >Novedades</li>
+          </ol>
+          {{-- <span class="breadcrumb-titulo">Novedades</span> --}}
+        </nav>
+  </div>
+</div>
+
 <div class="container my-5" data-aos="fade-up" data-aos-duration="1000">
     <div class="row mt-5">
         @foreach ($novedades as $index => $novedad)

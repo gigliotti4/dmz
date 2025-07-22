@@ -15,10 +15,10 @@ class Producto extends Model
         'galeria' => 'array',
     ];
 
-
-
-
-    
+    public function categoria()
+    {
+        return $this->belongsTo(Categoria::class);
+    }
 
 
     protected static function boot()

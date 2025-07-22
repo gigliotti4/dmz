@@ -126,6 +126,7 @@
                                 'blockQuote',
                                 'insertTable',
                                 'mediaEmbed',
+                                'codeBlock',
                                 '|',
                                 'undo',
                                 'redo',
@@ -182,6 +183,13 @@
                                 'Times New Roman, Times, serif',
                                 'Trebuchet MS, Helvetica, sans-serif',
                                 'Verdana, Geneva, sans-serif'
+                            ]
+                        },
+                        codeBlock: {
+                            languages: [
+                                { language: 'html', label: 'HTML' },
+                                { language: 'css', label: 'CSS' },
+                                { language: 'javascript', label: 'JavaScript' }
                             ]
                         },
                         // Configuración para pegar con limpieza de estilos

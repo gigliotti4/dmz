@@ -111,13 +111,14 @@
         border-left: 2px solid #ff6600;
     }
 
-    .contact-item svg {
+    .contact-item i {
         flex-shrink: 0;
         opacity: 0.8;
         transition: opacity 0.3s ease;
+        color: #FFF !important;
     }
 
-    .contact-item:hover svg {
+    .contact-item:hover i {
         opacity: 1;
     }
 
@@ -167,18 +168,17 @@
                 <img src="{{ asset(Storage::url($logo->logo_footer)) }}" class="footer-logo">
                 <div class="social-links">
                     <a href="{{ $redes->instagram }}" target="_blank" aria-label="Instagram">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                        </svg>
+                     {{-- icono instagram fontawesome--}}
+                        <i class="fab fa-instagram text-white" ></i>
+                     </svg>
                     </a>
-                    <a href="{{ $redes->linkedin }}" target="_blank" aria-label="LinkedIn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                            <rect x="2" y="9" width="4" height="12"></rect>
-                            <circle cx="4" cy="4" r="2"></circle>
-                        </svg>
+                    <a href="{{ $redes->facebook }}" target="_blank" aria-label="facebook">
+                        {{-- icono facebook --}}
+                       <i class="fab fa-facebook-f text-white" ></i>
+                    </a>
+                    <a href="{{ $redes->youtube }}" target="_blank" aria-label="youtube">
+                        {{-- icono youtube --}}
+                        <i class="fab fa-youtube text-white" ></i>
                     </a>
                 </div>
             </div>
@@ -197,7 +197,7 @@
             <div class="col-6 col-md-2 mb-4">
                 <h5 class="footer__secciones">Enlaces</h5>
                 <div class="d-flex flex-column">
-                    <a href="{{route('procesos')}}" class="nav__footer">Representación SANCO</a>
+                    <a href="{{route('servicios')}}" class="nav__footer">Representación SANCO</a>
                     <a href="{{route('novedades')}}" class="nav__footer">Novedades</a>
                     <a href="{{route('contacto')}}" class="nav__footer">Contacto</a>
                 </div>
