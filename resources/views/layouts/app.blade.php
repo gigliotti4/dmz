@@ -4,13 +4,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>@yield('title', 'Urban Project Barcelona')</title>
+    <title>@yield('title', 'Dmz')</title>
     <meta name="csrf-token" content="{{ csrf_token() }}"> 
     <meta name="description" content="@yield('description', isset($metadata) ? $metadata->description : 'Expertos en el ámbito de las reformas y construcción en Barcelona, donde tus proyectos se convierten en realidades de calidad')">
     <meta name="keywords" content="@yield('keywords', isset($metadata) ? $metadata->keyword : 'Baños, cocinas, reformas, construcción, Barcelona, reformas integrales, reformas de viviendas, reformas de locales comerciales')">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
@@ -30,7 +30,7 @@
       @include('page.layouts.header')
       @yield('content')
       @include('page.layouts.footer')
-          <a href="https://api.whatsapp.com/send?phone={{ preg_replace('/[^0-9]/', '', $contacto->whatsapp) }}" class="whatsapp" target="_blank"> 
+        <a href="https://api.whatsapp.com/send?phone={{ preg_replace('/[^0-9]/', '', $contacto->whatsapp) }}" class="whatsapp" target="_blank"> 
         <i class="fab fa-whatsapp whatsapp-icon text-white mt-3" aria-hidden="true"></i></a>
 
     </div>

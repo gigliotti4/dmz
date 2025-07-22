@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('orden')->nullable();
             $table->string('nombre');
+            $table->string('slug')->unique(); // nuevo campo slug
             $table->longtext('descripcion')->nullable();
             $table->string('imagen')->nullable();
             $table->json('galeria')->nullable();

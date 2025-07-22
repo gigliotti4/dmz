@@ -14,10 +14,14 @@ return new class extends Migration
         Schema::create('empresas', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->text('titulo')->nullable();
-            $table->longtext('descripcion_izq')->nullable();
-            $table->longtext('descripcion_der')->nullable();
-            $table->json('galeria')->nullable(); 
-           
+            $table->longtext('descripcion')->nullable();
+            $table->text('imagen')->nullable();
+            $table->text('icono_mision')->nullable();
+            $table->text('icono_vision')->nullable();
+            $table->text('icono_valores')->nullable();
+            $table->text('texto_mision')->nullable();
+            $table->text('texto_vision')->nullable();
+            $table->text('texto_valores')->nullable();           
             $table->timestamps();
         });
     }

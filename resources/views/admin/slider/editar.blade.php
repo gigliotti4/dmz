@@ -16,7 +16,7 @@
   </div>
   <div class="form-group col-md-12">
       <label for="descripcion">Descripción</label>
-      <textarea class="form-control summernote" name="descripcion" id="descripcion" cols="30" rows="10">{!! $slider->descripcion !!}</textarea>
+      <textarea class="form-control ckeditor" name="descripcion" id="descripcion" cols="30" rows="10">{!! $slider->descripcion !!}</textarea>
   </div>
   <div class="form-group col-md-6">
       <label for="imagen">(Imagen o video) · 900x675px</label> <br>

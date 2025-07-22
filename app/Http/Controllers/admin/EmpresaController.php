@@ -10,7 +10,41 @@ use Illuminate\Support\Facades\Storage;
 
 class EmpresaController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        //
+    }
 
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(Empresa $empresa)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
     public function edit($id)
     {
         $empresa = Empresa::find($id);
@@ -29,52 +63,42 @@ class EmpresaController extends Controller
             $empresa = Empresa::find($id);
         else{
             $empresa          = new Empresa();
+            
+        }
+        if ($request->hasFile('imagen'))
+        { 
+            $empresa->imagen = $request->file('imagen')->store('public/empresa');
         }
 
+        if ($request->hasFile('icono_mision'))
+        { 
+            $empresa->icono_mision = $request->file('icono_mision')->store('public/empresa');
+        }
+        if ($request->hasFile('icono_vision'))
+        { 
+            $empresa->icono_vision = $request->file('icono_vision')->store('public/empresa');
+        }
+        if ($request->hasFile('icono_valores'))
+        { 
+            $empresa->icono_valores = $request->file('icono_valores')->store('public/empresa');
+        }
+
+     
+    
+        
         $empresa->titulo = $request->titulo;
-        $empresa->descripcion_izq = $request->descripcion_izq;
-        $empresa->descripcion_der = $request->descripcion_der;
+        $empresa->descripcion = $request->descripcion;
+        $empresa->texto_vision = $request->texto_vision;
+       
+        $empresa->texto_mision = $request->texto_mision;
 
-        // galeria
-        if ($request->hasFile('galeria')) {
-            $galeria = $empresa->galeria ? json_decode($empresa->galeria, true) : [];
-            foreach ($request->file('galeria') as $image) {
-                $imageName = $image->getClientOriginalName();
-                $imagePath = $image->storeAs('empresa', $imageName, 'public');
-                $galeria[] = $imagePath;
-            }
-            $empresa->galeria = json_encode($galeria);
-        }
-
+        $empresa->texto_valores = $request->texto_valores;
+       
         $empresa->save();
-
+    
         return redirect()->route('admin.empresa.edit', ['id' => $id])->with('success', 'Registro actualizado exitosamente.');
     }
-
-
-
-    // Elimina una imagen específica de la galería de la empresa
-    public function eliminarImagen($id, $key)
-    {
-        $empresa = Empresa::findOrFail($id);
-        $galeria = json_decode($empresa->galeria, true);
-
-        if (isset($galeria[$key])) {
-            // Eliminar la imagen del almacenamiento
-            Storage::disk('public')->delete($galeria[$key]);
-
-            // Eliminar la imagen del array
-            unset($galeria[$key]);
-            
-            // Actualizar la galería en la base de datos (reindexar array)
-            $empresa->galeria = json_encode(array_values($galeria));
-            $empresa->save();
-
-            return response()->json(['success' => true]);
-        }
-
-        return response()->json(['success' => false, 'message' => 'Imagen no encontrada']);
-    }
+    
 
     /**
      * Remove the specified resource from storage.

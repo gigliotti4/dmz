@@ -2,126 +2,78 @@
 @section('title', 'Empresa')
 @section('content')
 
-<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-    <!-- Indicadores -->
-    <div class="carousel-indicators justify-content-center">
-        @foreach($sliders as $index => $slider)
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $index }}" class="{{ $index == 0 ? 'active' : '' }}" aria-current="{{ $index == 0 ? 'true' : 'false' }}" aria-label="Slide {{ $index + 1 }}"></button>
-        @endforeach
-    </div>
+<div class="bg__breadcrumb">
 
-    <div class="carousel-inner">
-        @foreach($sliders as $index => $slider)
-            @if(Str::contains($slider->imagen, ['.mp4', '.mov', '.avi']))
-                <!-- Elemento - Video -->
-                <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
-                    <div class="carousel-video-wrapper">
-                        <video class="carousel-video" autoplay loop muted>
-                            <source src="{{ asset(Storage::url($slider->imagen)) }}" type="video/mp4">
-                            Tu navegador no soporta video HTML5.
-                        </video>
-                        <div class="carousel-caption text-left">
-                            <h5 class="carousel__titulo">{{ $slider->titulo }}</h5>
-                            <p class="carousel__descripcion">{!! $slider->descripcion !!}</p>
-                        </div>
-                    </div>
-                </div>
-            @else
-                <!-- Elemento - Imagen como background -->
-                <div class="carousel-item {{ $index == 0 ? 'active' : '' }}" style="background-image: url('{{ asset(Storage::url($slider->imagen)) }}');">
-                    <div class="carousel-caption text-left">
-                        <h5 class="carousel__titulo">{{ $slider->titulo }}</h5>
-                        <p class="carousel__descripcion">{!! $slider->descripcion !!}</p>
-                    </div>
-                </div>
-            @endif
-        @endforeach
-    </div>
+  <div class="container">
+      <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{route('index')}}" class="breadcrumb-item">Inicio</a></li>
+            <li class="breadcrumb-item active" >Nosotros</li>
+          </ol>
+          {{-- <span class="breadcrumb-titulo">Novedades</span> --}}
+        </nav>
+  </div>
 </div>
 
-<div class="bg-empresa" data-aos="fade-up" data-aos-duration="1000">
-    <div class="container my-5">
-        <div class="row">
-            <div class="col-md-6" data-aos="fade-right" data-aos-delay="200" data-aos-duration="800">
-                <h3 class="empresa-titulo">Sobre Nosotros</h3>
-                <p class="empresa-descripcion mt-3">{!!$empresa->descripcion_izq!!}</p>
-            </div>
-            <div class="col-md-6" data-aos="fade-left" data-aos-delay="400" data-aos-duration="800">
-                <h3 class="empresa-titulo">¿Qué Hacemos?</h3>
-                <p class="empresa-descripcion mt-3">{!!$empresa->descripcion_der!!}</p>
-            </div>
-        </div>
-    </div>
+<div class="container my-5">
+  <div class="row">
+     <div class="col-md-6">
+          <div style="background-image: url('{{asset(Storage::url($empresa->imagen))}}');
+          background-repeat:no-repeat;
+          background-position:center;
+          background-size:cover;
+          height:500px;
+          ">
+
+          </div>
+      </div>
+      <div class="col-md-6">
+     
+          <h3 class="titulo__secciones">{{$empresa->titulo}}</h3>
+          <p class="contenido__descripcion mt-3">{!!$empresa->descripcion!!}</p>
+          {{-- <a type="button" href="" class="btn btn__azul mb-2 px-5" >MÁS INFORMACIÓN</a> --}}
+   
+       </div>
+     
+    
+  </div>
 </div>
 
-<div class="container my-5" data-aos="fade-up" data-aos-duration="1000">
-    <div class="row">
-        <h3 class="text-center empresa-titulo" data-aos="zoom-in" data-aos-delay="200">Galeria</h3>
-        <div class="brands-carousel" data-aos="fade-up" data-aos-delay="400">
-            @php
-              // Manejo seguro: verificar si es ya un array o es una cadena JSON
-              $galeria = $empresa->galeria;
-              if (is_string($galeria)) {
-                  $galeria = json_decode($galeria, true) ?? [];
-              }
-            @endphp
-            
-            @if(is_array($galeria) && count($galeria) > 0)
-              @foreach($galeria as $index => $imagen)
-                <div class="brand-item px-2" data-aos="fade-up" data-aos-delay="{{ 500 + ($index * 100) }}">
-                  <img src="{{ asset(Storage::url($imagen)) }}" alt="" class="img-fluid">
-                </div>
-              @endforeach
-            @else
-              <div class="brand-item px-2">
-                <p class="text-center">No hay imágenes disponibles</p>
+
+<div class="my-5" style="background-color: #F5F5F5;">
+  <div class="container">
+      <div class="row py-5">
+          <h3 class="titulo__secciones pb-3">¿Por qué elegirnos?</h3>
+          <div class="col-12 col-md-4" data-aos="fade-up" data-aos-duration="1500">
+              <div class="bg__card w-100 ">
+                  <div class="p-4 text-center">
+                      <img src="{{asset(Storage::url($empresa->icono_mision))}}"  style="height:50px;weight:50px;">
+                      <h3 class="card__titulo my-4">Misión</h3>
+                      <span class="card__texto">{!!$empresa->texto_mision!!}</span>
+                  </div>
               </div>
-            @endif
-        </div>
-    </div>
+          </div>
+          <div class="col-12 col-md-4" data-aos="fade-up" data-aos-duration="1500">
+              <div class="bg__card w-100 ">
+                  <div class="p-4 text-center">
+                      <img src="{{asset(Storage::url($empresa->icono_vision))}}"  style="height:50px;weight:50px;">
+                      <h3 class="card__titulo my-4">Visión</h3>
+                      <span class="card__texto">{!!$empresa->texto_vision!!}</span>
+                  </div>
+              </div>
+          </div>
+          <div class="col-12 col-md-4" data-aos="fade-up" data-aos-duration="1500">
+              <div class="bg__card w-100">
+                  <div class="p-4 text-center">
+                      <img src="{{asset(Storage::url($empresa->icono_valores))}}"  style="height:50px;weight:50px;">
+                      <h3 class="card__titulo my-4">Valores</h3>
+                      <span class="card__texto">{!!$empresa->texto_valores!!}</span>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
 </div>
 
-@push('scripts')
-<script>
-  $(document).ready(function(){
-    $('.brands-carousel').slick({
-      dots: true,
-      arrows: false,
-      infinite: true,
-      speed: 500,
-      slidesToShow: 3,
-      slidesToScroll: 1,
-      autoplay: true,
-      autoplaySpeed: 800,
-      responsive: [
-        {
-          breakpoint: 1024,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            dots: true
-          }
-        },
-        {
-          breakpoint: 600,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            dots: true
-          }
-        },
-        {
-          breakpoint: 480,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            dots: true
-          }
-        }
-      ]
-    });
-  });
-</script>
-@endpush
+@endsection 
 
-@endsection

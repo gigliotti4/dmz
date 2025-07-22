@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('slug')->unique(); // nuevo campo slug
             $table->longtext('descripcion')->nullable();
             $table->string('imagen')->nullable();
+            $table->string('pdf')->nullable();
             $table->json('galeria')->nullable();
             $table->timestamps();
         });

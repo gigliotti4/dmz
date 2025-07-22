@@ -2,14 +2,8 @@
 
 @section('content')
 
-<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000" data-bs-pause="false" data-aos="fade-in" data-aos-duration="1200">
-    <!-- Indicadores -->
-    <div class="carousel-indicators justify-content-center">
-        @foreach($sliders as $index => $slider)
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $index }}" class="{{ $index == 0 ? 'active' : '' }}" aria-current="{{ $index == 0 ? 'true' : 'false' }}" aria-label="Slide {{ $index + 1 }}"></button>
-        @endforeach
-    </div>
 
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000" data-bs-pause="false" >
     <div class="carousel-inner">
         @foreach($sliders as $index => $slider)
             @if(Str::contains($slider->imagen, ['.mp4', '.mov', '.avi']))
@@ -20,97 +14,84 @@
                             <source src="{{ asset(Storage::url($slider->imagen)) }}" type="video/mp4">
                             Tu navegador no soporta video HTML5.
                         </video>
-                        <div class="carousel-caption text-left" data-aos="fade-up" data-aos-delay="300" data-aos-duration="800">
-                            <h5 class="carousel__titulo">{{ $slider->titulo }}</h5>
-                            <p class="carousel__descripcion">{!! $slider->descripcion !!}</p>
-                            @if($index == 0)
-                            <a type="button" href="{{ route('contacto') }}" class="btn btn__white mb-2" data-aos="zoom-in" data-aos-delay="600" data-aos-duration="500">Solicitar Presupuesto Gratuito</a>
-                            @endif
+                        <div class="carousel-content">
+                            <div class="carousel-text">
+                                <div class="container">
+                                <h1 class="carousel-title">{{ $slider->titulo }}</h1>
+                                <p class="carousel-subtitle">{!! $slider->descripcion !!}</p>
+                                <a href="{{ route('contacto') }}" class="carousel-btn">MÁS INFORMACIÓN</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             @else
                 <!-- Elemento - Imagen como background -->
-                <div class="carousel-item {{ $index == 0 ? 'active' : '' }}" style="background-image: url('{{ asset(Storage::url($slider->imagen)) }}');">
-                    <div class="carousel-caption text-left" data-aos="fade-up" data-aos-delay="300" data-aos-duration="800">
-                        <h5 class="carousel__titulo">{{ $slider->titulo }}</h5>
-                        <p class="carousel__descripcion">{!! $slider->descripcion !!}</p>
-                        @if($index == 0)
-                        <a type="button" href="{{ route('contacto') }}" class="btn btn__white mb-2" data-aos="zoom-in" data-aos-delay="600" data-aos-duration="500">Solicitar Presupuesto Gratuito</a>
-                        @endif
+                <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
+                    <img src="{{ asset(Storage::url($slider->imagen)) }}" class="carousel-imagen" alt="{{ $slider->titulo }}">
+                    
+                    <div class="carousel-content">
+                            <div class="container">
+                            <div class="carousel-text">
+                                <h1 class="carousel-title">{{ $slider->titulo }}</h1>
+                                <p class="carousel-subtitle">{!! $slider->descripcion !!}</p>
+                                <a href="{{ route('contacto') }}" class="carousel-btn">MÁS INFORMACIÓN</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             @endif
         @endforeach
     </div>
+
+    <!-- Indicadores en la parte inferior -->
+    <div class="carousel-indicators">
+        @foreach($sliders as $index => $slider)
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $index }}" class="{{ $index == 0 ? 'active' : '' }}" aria-current="{{ $index == 0 ? 'true' : 'false' }}" aria-label="Slide {{ $index + 1 }}"></button>
+        @endforeach
+    </div>
 </div>
         
 {{-- servicios --}}
-<div class="container my-5" data-aos="fade-up" data-aos-duration="1000">
+
+<div class="container-fluid my-5" >
     <div class="row">
         <h3 class="text-center mb-5 titulo-secciones" data-aos="fade-up">Nuestros servicios</h3>
         @foreach($servicios as $index => $servicio)
-        <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="{{ $index * 100 }}" data-aos-duration="800">
-            <div class="bg-servicios mt-2">
-                <div class="imagen-container">
-                    <img src="{{asset(Storage::url($servicio->imagen))}}" alt="{{$servicio->nombre}}">
+        <div class="col-12 col-md-3 p-0" data-aos="fade-up" data-aos-delay="{{ $index * 100 }}" data-aos-duration="800">
+            <a href="{{ route('servicio', $servicio->slug ?? $servicio->id) }}" class="servicio-link">
+                <div class="bg-servicios mt-2" style="background-image: url('{{asset(Storage::url($servicio->imagen))}}');">
+                    <div class="servicio-content">
+                        <h5 class="servicio-title">{{$servicio->nombre}}</h5>
+                    </div>
+                    <div class="servicio-overlay">
+                           <h5 class="servicio-title">{{$servicio->nombre}}</h5>
+                        <p class="servicio-descripcion">{!! $servicio->descripcion ?? 'Conoce más sobre este servicio' !!}</p>
+                    </div>
                 </div>
-                <h5>{{$servicio->nombre}}</h5>
-            </div>
+            </a>
         </div>
         @endforeach
-        <div class="text-center mt-5" data-aos="zoom-in" data-aos-delay="200" data-aos-duration="600">
-            <a type="button" href="{{ route('servicios') }}" class="btn btn__black mb-2">Ver todos</a>
-        </div>
+        
     </div>
 </div>
 
-{{-- Contenido Inicio --}}
-<div class="mt-5" style="overflow: hidden" data-aos="fade-up" data-aos-duration="1500">
-    <div class="row">
-       
-
-        <div class="col-md-7 p-0">
-            <div style="background-image: url('img/interiorismo.jpg');
-            background-repeat:no-repeat;
-            background-position:center;
-            background-size:cover;
-            height:600px;">
-            </div>
-        </div>
-         <div class="col-md-5" style="background-color: #131313; display: flex; align-items: center; height: 600px;">
-            <div class="p-5 text-left">
-                {{-- <h3 class="contenido__subtitulo">Sobre Nosotros</h3> --}}
-                <h3 class="contenido__titulo">Proyectos de Interiorismo</h3>
-                <div class="contenido__descripcion my-5">Creamos espacios únicos que reflejan tu estilo, combinando funcionalidad, estética y atención al detalle para transformar cada ambiente en una experiencia inolvidable de tu hogar</div>
-                <a type="button" href="{{ route('contacto') }}" class="btn btn__white mb-2 px-5">Solicitar presupuesto</a>
-            </div>
-        </div>
+{{-- Banner proyecto --}}
+<div class="banner-single my-5" style="background-color: #000;">
+    <div class="banner-overlay"></div>
+    <div class="banner-content">    
+        <h5 class="">¿Tenés un proyecto? Hablemos</h5>
+        <p class="">Te ayudamos a encontrar la solución más eficiente.</p>
+        <a href="{{ route('contacto') }}" class="carousel-btn">contactanos</a>
     </div>
 </div>
 
-{{-- Contenido procesos --}}
-<div class="contianer mt-5" data-aos="fade-up" data-aos-duration="1000">
-    <div class="step-container">
-        <h3 class="text-center titulo-secciones mb-5" data-aos="fade-up" data-aos-delay="100">Como llevar tu proyecto a la realidad en 4 pasos</h3>
-    
-        @foreach($procesos as $index => $proceso)
-        <div class="step-header" data-aos="fade-right" data-aos-delay="{{ $index * 150 }}">
-          <span class="step-number">{{$proceso->paso}}</span>
-          <span class="step-separator"></span>
-          <span class="step-title">{{$proceso->nombre}}</span>
-        </div>
-        <p class="step-description" data-aos="fade-up" data-aos-delay="{{ $index * 150 + 100 }}">{!!$proceso->descripcion!!}</p>
-        @endforeach
-        <div class="text-center mt-5" data-aos="zoom-in" data-aos-delay="300" data-aos-duration="800">
-            <a type="button" href="{{ route('contacto') }}" class="btn btn__black mb-2">Contáctanos ahora</a>
-        </div>
-    </div>
-</div>
+
+
 
 
 {{-- productos --}}
-<div class="container my-5" data-aos="fade-up" data-aos-duration="1200">
+<div class="container my-5" >
     <h3 class="text-center titulo-secciones" data-aos="fade-up">Échale un vistazo a nuestros catálogos.</h3>
     
     <div class="row mt-5">
@@ -138,14 +119,14 @@
 </div>
 
 {{-- Contenido Inicio --}}
-<div class="mt-5" style="overflow: hidden" data-aos="fade-up" data-aos-duration="1500">
+<div class="mt-5 container-fluid" style="overflow: hidden" >
     <div class="row">
-        <div class="col-md-5" style="background-color: #131313; display: flex; align-items: center; height: 600px;">
-            <div class="p-5 text-left">
+        <div class="col-md-5" style="background-color: #EEEEEE; display: flex; align-items: center; height: 600px;">
+            <div class="p-5 text-left" data-aos="fade-up" data-aos-duration="1500">
                 <h3 class="contenido__subtitulo">Sobre Nosotros</h3>
                 <h3 class="contenido__titulo">{{$inicio->titulo}}</h3>
                 <div class="contenido__descripcion my-5">{!!$inicio->descripcion!!}</div>
-                <a type="button" href="{{ route('empresa') }}" class="btn btn__white mb-2 px-5">Conoce más</a>
+                <a type="button" href="{{ route('empresa') }}" class="carousel-btn">Conoce más</a>
             </div>
         </div>
 
@@ -161,7 +142,7 @@
 </div>
 
 {{-- Blog --}}
-<div class="container my-5" data-aos="fade-up" data-aos-duration="1000">
+{{-- <div class="container my-5" data-aos="fade-up" data-aos-duration="1000">
     <h3 class="titulo-secciones text-center" data-aos="fade-up">No te pierdas ninguna noticia</h3>
     <h3 class="subtitulo-secciones text-center" data-aos="fade-up" data-aos-delay="100">Nuestro Blog</h3>
     <div class="row mt-5">
@@ -173,7 +154,7 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ $novedad->titulo }}</h5>
                         <div class="card-text-corto">{!! Str::limit($novedad->descripcion, 80, '...') !!}</div>
-                        {{-- ver mas --}}
+                    
                         <div class="ver-mas-wrapper">
                             <span class="ver-mas-link">Ver más</span>
                         </div>    
@@ -186,15 +167,20 @@
             <a type="button" href="{{ route('novedades') }}" class="btn btn__black mb-2">Ver todos</a>
         </div>
     </div>
-</div>
+</div> --}}
+
+
 
 {{-- Banner --}}
-<div class="banner-single" style="background-image: url('{{ asset(Storage::url($inicio->banner)) }}');">
+<div class="banner-single my-5" style="background-image: url('{{ asset(Storage::url($inicio->banner)) }}');">
     <div class="banner-overlay"></div>
     <div class="banner-content">
-        <h5 class="carousel__titulo">{{ $inicio->titulo_banner }}</h5>
-        <p class="carousel__descripcion">{!! $inicio->descripcion_banner !!}</p>
-        <a type="button" href="{{ route('contacto') }}" class="btn btn__white mb-2">Solicitar presupuesto</a>
+        <div class="d-flex justify-content-center align-items-center ">
+            <h5 class="me-5">{{ $inicio->titulo_banner }}</h5>
+            <img src="{{asset('img/sanco.png')}}" alt="" style="width: 150px; height: auto; margin-bottom: 15px;">
+        </div>
+        <p class="">{!! $inicio->descripcion_banner !!}</p>
+      
     </div>
 </div>
 

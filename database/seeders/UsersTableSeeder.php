@@ -19,11 +19,11 @@ class UsersTableSeeder extends Seeder
         // Generate dummy users
      
             DB::table('users')->insert([
-                'name' => 'Pablo',
-                'username' => 'pablo',
+                'name' => 'admin',
+                'username' => 'admin',
                 'role' => 'Administrador',
-                'email' => 'pablo'. '@gmail.com',
-                'password' => Hash::make('pablopablo'), // Default password for all users
+                'email' => 'admin'. '@gmail.com',
+                'password' => Hash::make('adminadmin'), // Default password for all users
                 'remember_token' => Str::random(10),
             ]);
         

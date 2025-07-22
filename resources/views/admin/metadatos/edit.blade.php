@@ -16,7 +16,7 @@
 
             <div class="form-group my-5">
                 <label for="description">Description</label>
-                <textarea class="form-control summernote" id="description" name="description">{{ $metadata->description }}</textarea>
+                <textarea class="form-control ckeditor" id="description" name="description">{{ $metadata->description }}</textarea>
             </div>
 
             <div class="form-group">

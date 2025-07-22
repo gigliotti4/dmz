@@ -36,13 +36,13 @@ class PageController extends Controller
     $servicios = Servicio::orderBy('orden', 'asc')->take(4)->get();
     $novedades = Novedades::orderBy('orden', 'asc')->get();
     $productos = Producto::orderBy('orden', 'asc')->get();
-    $procesos = Proceso::orderBy('orden', 'asc')->get();
+  
     $contacto = Contacto::first(); // Si sólo hay un contacto, puedes usar first()
     $sliders = Slider::where('seccion', 'inicio')->get();
     $metadata = Metadata::where('section', 'inicio')->first();
 
     // Pasar los datos a la vista
-    return view('page.index', compact('inicio', 'redes', 'contacto', 'sliders', 'logo', 'servicios', 'productos', 'novedades', 'procesos', 'metadata'));
+    return view('page.index', compact('inicio', 'redes', 'contacto', 'sliders', 'logo', 'servicios', 'productos', 'novedades', 'metadata'));
     }
 
 

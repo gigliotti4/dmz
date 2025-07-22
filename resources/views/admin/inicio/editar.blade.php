@@ -17,7 +17,7 @@
 
     <div class="form-group my-4">
         <label for="descripcion" class="font-weight-bold">Descripcion</label>
-        <textarea class="form-control summernote" name="descripcion" id="descripcion" cols="30" rows="10">{!! $contenido->descripcion !!}</textarea>
+        <textarea class="form-control ckeditor" name="descripcion" id="descripcion" cols="30" rows="10">{!! $contenido->descripcion !!}</textarea>
     </div>
 
     <div class="form-group">
@@ -34,7 +34,7 @@
 
     <div class="form-group my-4">
         <label for="descripcion_banner" class="font-weight-bold">Descripcion_banner</label>
-        <textarea class="form-control summernote" name="descripcion_banner" id="descripcion_banner" cols="30" rows="10">{!! $contenido->descripcion_banner !!}</textarea>
+        <textarea class="form-control ckeditor" name="descripcion_banner" id="descripcion_banner" cols="30" rows="10">{!! $contenido->descripcion_banner !!}</textarea>
     </div>
 
     <div class="form-group">

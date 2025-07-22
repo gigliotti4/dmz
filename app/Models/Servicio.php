@@ -12,6 +12,7 @@ class Servicio extends Model
         'orden',
         'nombre',
         'descripcion',
+        'slug',
         'imagen',
         'galeria',
     ];

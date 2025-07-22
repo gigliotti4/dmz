@@ -19,7 +19,7 @@
     <div class="row">
         <div class="form-group col-md-12">
             <label for="descripcion">Descripción</label>
-            <textarea class="form-control summernote" name="descripcion" id="descripcion" cols="30" rows="10">{{ $novedad->descripcion }}</textarea>
+            <textarea class="form-control ckeditor" name="descripcion" id="descripcion" cols="30" rows="10">{{ $novedad->descripcion }}</textarea>
         </div>
     </div>
 

@@ -16,7 +16,7 @@
   </div>
   <div class="form-group col-md-12">
     <label for="descripcion">Descrpcion</label>
-    <textarea class="form-control summernote" name="descripcion" id="descripcion" cols="30" rows="10" value="" ></textarea>
+    <textarea class="form-control ckeditor" name="descripcion" id="descripcion" cols="30" rows="10" value="" ></textarea>
     
   </div> 
   <div class="form-group col-md-6">

@@ -13,7 +13,7 @@
 
   <div class="form-group col-md-12">
     <label for="mapa">Mapa</label>
-    <textarea class="form-control summernote" name="mapa"  id="mapa" cols="30" rows="10" value="" >{!!$contacto->mapa!!}</textarea>
+    <textarea class="form-control ckeditor" name="mapa"  id="mapa" cols="30" rows="10" value="" >{!!$contacto->mapa!!}</textarea>
   </div>
 
     <div class="form-group">

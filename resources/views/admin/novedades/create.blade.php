@@ -6,20 +6,24 @@
     @csrf
     <div class="row">
 
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-4">
             <label for="orden">Orden</label>
             <input type="text" class="form-control" id="orden" name="orden">
         </div>
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-4">
             <label for="titulo">Titulo</label>
             <input type="text" class="form-control" id="titulo" name="titulo">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="categoria">categoria</label>
+            <input type="text" class="form-control" id="categoria" name="categoria">
         </div>
     </div>
 
     <div class="row">
         <div class="form-group col-md-12">
             <label for="descripcion">Descripción</label>
-            <textarea class="form-control summernote" name="descripcion" id="descripcion" cols="30" rows="10"></textarea>
+            <textarea class="form-control ckeditor" name="descripcion" id="descripcion" cols="30" rows="10"></textarea>
         </div>
     </div>
 

@@ -1,120 +1,74 @@
-<nav class="navbar navbar-expand-lg bg-transparent fixed-top" id="mainHeader">
-    <div class="container">
+<!-- Agrega la clase fixed-top al navbar -->
+<nav class="navbar navbar-expand-lg bg-black py-4  align-items-center " id="mainHeader">
+    <div class="container d-flex justify-content-between align-items-center">
         <a class="navbar-brand" href="{{ route('index') }}">
-            <img src="{{ asset(Storage::url($logo->logo_header)) }}" style="height:100px">
+            <img src="{{ asset(Storage::url($logo->logo_header)) }}" style="height:auto">
         </a>
-        <button class="navbar-toggler bg-white" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+        <button class="navbar-toggler bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse flex-column" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <div class="collapse navbar-collapse  justify-content-end align-items-center" id="navbarSupportedContent">
+            <ul class="navbar-nav d-flex align-items-center mb-0">
                 <li class="nav-item">
-                    <a class="nav-link nav__menu__inicio {{ request()->routeIs('empresa') ? 'active__header' : '' }}" href="{{ route('empresa') }}">Sobre nosotros</a>
+                    <a class="nav-link nav__menu__inicio {{ request()->routeIs('empresa') ? 'active__header' : '' }}" href="{{ route('empresa') }}">Empresa</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav__menu__inicio {{ request()->routeIs('productos', 'producto') ? 'active__header' : '' }}" href="{{ route('productos') }}">Maquinas</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link nav__menu__inicio {{ request()->routeIs('servicios') ? 'active__header' : '' }}" href="{{ route('servicios') }}">Servicios</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav__menu__inicio {{ request()->routeIs('productos', 'producto') ? 'active__header' : '' }}" href="{{ route('productos') }}">Catálogo</a>
-                </li>
-              
-                <li class="nav-item">
-                    <a class="nav-link nav__menu__inicio {{ request()->routeIs('procesos') ? 'active__header' : '' }}" href="{{ route('procesos') }}">Nuestro proceso</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link nav__menu__inicio {{ request()->routeIs('novedades', 'novedad') ? 'active__header' : '' }}" href="{{ route('novedades') }}">Blog</a>
+                    <a class="nav-link nav__menu__inicio {{ request()->routeIs('novedades', 'novedad') ? 'active__header' : '' }}" href="{{ route('novedades') }}">Novedades</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link nav__menu__inicio {{ request()->routeIs('contacto') ? 'active__header' : '' }}" href="{{ route('contacto') }}">Contacto</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav__menu__inicio " href="{{ route('contacto') }}"><i class="fa-solid fa-cart-shopping"></i></a>
+                    <a class="btn btn-light fw-bold px-3 py-2 ms-2 d-flex align-items-center justify-content-center" href="#" style="border-radius: 0; color: #ff6600;">
+                        REPRESENTACIÓN SANCO
+                    </a>
                 </li>
-   
+            {{-- button --}}
             </ul>
         </div>
     </div>
 </nav>
 
-<div class="offcanvas offcanvas-end " style="background-color: #131313;" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+<div class="offcanvas offcanvas-end" style="background-color: #131313;" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
     <div class="offcanvas-header">
         <a class="navbar-brand" href="{{ route('index') }}">
             <img src="{{ asset(Storage::url($logo->logo_header)) }}" class="">
         </a>
-        <a class="nav-link nav__menu__inicio " href="{{ route('contacto') }}"><i class="fa-solid fa-cart-shopping"></i></a>
         <button type="button" class="btn-close bg-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
-    <div class="offcanvas-body">
-        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+    <div class="offcanvas-body justify-content-center align-items-center">
+        <ul class="navbar-nav text-center">
             <li class="nav-item">
-                <a class="nav-link nav__menu__inicio {{ request()->routeIs('empresa') ? 'active__header' : '' }}" href="{{ route('empresa') }}">Sobre nosotros</a>
+                <a class="nav-link nav__menu__inicio {{ request()->routeIs('empresa') ? 'active__header' : '' }}" href="{{ route('empresa') }}">Empresa</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link nav__menu__inicio {{ request()->routeIs('servicios') ? 'active__header' : '' }}" href="{{ route('servicios') }}">Servicios</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link nav__menu__inicio {{ request()->routeIs('productos') ? 'active__header' : '' }}" href="{{ route('productos') }}">Catálogo</a>
-            </li>
-          
-            <li class="nav-item">
-                <a class="nav-link nav__menu__inicio {{ request()->routeIs('procesos') ? 'active__header' : '' }}" href="{{ route('procesos') }}">Nuestro proceso</a>
+                <a class="nav-link nav__menu__inicio {{ request()->routeIs('productos') ? 'active__header' : '' }}" href="{{ route('productos') }}">Maquinas</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link nav__menu__inicio {{ request()->routeIs('novedades', 'novedad') ? 'active__header' : '' }}" href="{{ route('novedades') }}">Blog</a>
+                <a class="nav-link nav__menu__inicio {{ request()->routeIs('novedades', 'novedad') ? 'active__header' : '' }}" href="{{ route('novedades') }}">Novedades</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link nav__menu__inicio {{ request()->routeIs('contacto') ? 'active__header' : '' }}" href="{{ route('contacto') }}">Contacto</a>
             </li>
+            <li class="nav-item mt-3">
+                <a class="btn btn-light fw-bold w-100 py-2 d-flex align-items-center justify-content-center" href="#" style="border-radius: 0; color: #ff6600;">
+                    REPRESENTACIÓN SANCO
+                </a>
+            </li>
         </ul>
-        {{-- Opcional: Puedes agregar la búsqueda dentro del offcanvas si lo deseas --}}
-        {{-- <form class="d-flex mt-3" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-        </form> --}}
     </div>
 </div>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const header = document.getElementById('mainHeader');
-        
-        // Verificar que el elemento existe antes de operar con él
-        if (header) {
-            // Eliminar la condición de isHomePage para aplicar en todas las páginas
-            window.addEventListener('scroll', function() {
-                if (window.scrollY > 50) {
-                    // Al hacer scroll, añadir fondo blanco
-                    header.classList.add('bg-white-scroll');
-                    header.classList.add('nav__menu');
-                    
-                    // Cambiar color de texto para mejor visibilidad en fondo blanco
-                    const menuLinks = document.querySelectorAll('.nav__menu__inicio');
-                    menuLinks.forEach(link => {
-                        link.style.color = '#fff';
-                    });
-                } else {
-                    // Al volver arriba, quitar fondo blanco
-                    header.classList.remove('bg-white-scroll');
-                    
-                    // Restaurar color de texto para transparente
-                    const menuLinks = document.querySelectorAll('.nav__menu__inicio');
-                    menuLinks.forEach(link => {
-                        link.style.color = '';
-                    });
-                }
-            });
-            
-            // Comprobar la posición inicial al cargar la página
-            if (window.scrollY > 50) {
-                header.classList.add('bg-white-scroll');
-                header.classList.add('nav__menu');
-            }
-        } else {    
-            console.warn('No se encontró el elemento con ID "mainHeader" en la página');
-        }
-    });
-</script>
 
 
 

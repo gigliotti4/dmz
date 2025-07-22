@@ -27,8 +27,8 @@ class NovedadesController extends Controller
             'orden' => 'required|string|max:255',
             'titulo' => 'required|string|max:255',
             'descripcion' => 'required|string',
-            'descripcion_corto' => 'nullable|string',
-            'imagen' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Añadir extensiones y tamaño máximo
+            'categoria' => 'nullable|string',
+            'imagen' => 'required|image|mimes:jpeg,png,jpg,gif', // Añadir extensiones y tamaño máximo
             'galeria' => 'nullable|array',
             'galeria.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
         ]);
@@ -41,7 +41,7 @@ class NovedadesController extends Controller
         $novedad->orden = $request->orden;
         $novedad->titulo = $request->titulo;
         $novedad->descripcion = $request->descripcion;
-        $novedad->descripcion_corto = $request->descripcion_corto ?? null;
+        $novedad->categoria = $request->categoria ?? null;
         $novedad->imagen = $imagenPath;
 
         // Manejo de la carga de la galería de imágenes
@@ -73,7 +73,7 @@ class NovedadesController extends Controller
             'orden' => 'required|string|max:255',
             'titulo' => 'nullable|string|max:255',
             'descripcion' => 'nullable|string',
-            'descripcion_corto' => 'nullable|string',
+            'categoria' => 'nullable|string',
             'imagen' => 'nullable|image',
             'galeria' => 'nullable|array',
             'galeria.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',

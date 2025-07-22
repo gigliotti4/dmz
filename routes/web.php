@@ -7,6 +7,7 @@ Route::get('/', [App\Http\Controllers\PageController::class, 'index'])->name('in
 Route::get('/empresa', [App\Http\Controllers\PageController::class, 'empresa'])->name('empresa');
 Route::get('/contacto', [App\Http\Controllers\PageController::class, 'contacto'])->name('contacto');
 Route::get('/servicios', [App\Http\Controllers\PageController::class, 'servicios'])->name('servicios');
+Route::get('/servicio/{id}', [App\Http\Controllers\PageController::class, 'servicio'])->name('servicio');
 Route::get('/procesos', [App\Http\Controllers\PageController::class, 'procesos'])->name('procesos');
 Route::get('/productos', [App\Http\Controllers\PageController::class, 'productos'])->name('productos');
 Route::get('/producto/{slug}', [App\Http\Controllers\PageController::class, 'producto'])->name('producto');

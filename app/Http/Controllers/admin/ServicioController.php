@@ -4,7 +4,8 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Servicio;
-use Illuminate\Support\Facades\Storage; 
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str; 
 
 class ServicioController extends Controller
 {
@@ -20,6 +21,12 @@ class ServicioController extends Controller
         return view('admin.servicios.create');
     }
 
+    public function show($slug)
+    {
+        $servicio = Servicio::where('slug', $slug)->firstOrFail();
+        return view('admin.servicios.show', compact('servicio'));
+    }
+
     public function store(Request $request)
     {
         $request->validate([
@@ -32,6 +39,9 @@ class ServicioController extends Controller
         ]);
 
         $data = $request->only('orden', 'nombre', 'descripcion');
+        
+        // Generar slug automáticamente
+        $data['slug'] = Str::slug($request->nombre);
 
         if ($request->hasFile('imagen')) {
             $data['imagen'] = $request->file('imagen')->storeAs('imagenes', $request->file('imagen')->getClientOriginalName(), 'public');
@@ -69,6 +79,11 @@ class ServicioController extends Controller
 
         $servicio = Servicio::findOrFail($id);
         $data = $request->only('orden', 'nombre', 'descripcion');
+        
+        // Actualizar slug si el nombre cambió
+        if ($request->nombre !== $servicio->nombre) {
+            $data['slug'] = Str::slug($request->nombre);
+        }
 
         if ($request->hasFile('imagen')) {
             // Si hay una imagen anterior, eliminarla
