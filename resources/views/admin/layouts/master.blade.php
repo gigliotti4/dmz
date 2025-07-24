@@ -93,169 +93,55 @@
             // Inicializar Select2
             $('.select2').select2();
 
-            // Inicializar CKEditor 5
-            $('.ckeditor').each(function() {
-                const element = this;
-                
-                ClassicEditor
-                    .create(element, {
-                        toolbar: {
-                            items: [
-                                'heading',
-                                '|',
-                                'bold',
-                                'italic',
-                                'underline',
-                                'strikethrough',
-                                '|',
-                                'fontSize',
-                                'fontFamily',
-                                'fontColor',
-                                'fontBackgroundColor',
-                                '|',
-                                'alignment',
-                                '|',
-                                'numberedList',
-                                'bulletedList',
-                                '|',
-                                'outdent',
-                                'indent',
-                                '|',
-                                'link',
-                                'imageUpload',
-                                'blockQuote',
-                                'insertTable',
-                                'mediaEmbed',
-                                'codeBlock',
-                                '|',
-                                'undo',
-                                'redo',
-                                '|',
-                                'sourceEditing'
-                            ]
-                        },
-                        language: 'es',
-                        image: {
-                            toolbar: [
-                                'imageTextAlternative',
-                                'imageStyle:inline',
-                                'imageStyle:block',
-                                'imageStyle:side'
-                            ]
-                        },
-                        table: {
-                            contentToolbar: [
-                                'tableColumn',
-                                'tableRow',
-                                'mergeTableCells',
-                                'tableCellProperties',
-                                'tableProperties'
-                            ]
-                        },
-                        heading: {
-                            options: [
-                                { model: 'paragraph', title: 'Párrafo', class: 'ck-heading_paragraph' },
-                                { model: 'heading1', view: 'h1', title: 'Título 1', class: 'ck-heading_heading1' },
-                                { model: 'heading2', view: 'h2', title: 'Título 2', class: 'ck-heading_heading2' },
-                                { model: 'heading3', view: 'h3', title: 'Título 3', class: 'ck-heading_heading3' },
-                                { model: 'heading4', view: 'h4', title: 'Título 4', class: 'ck-heading_heading4' }
-                            ]
-                        },
-                        fontSize: {
-                            options: [
-                                9,
-                                11,
-                                13,
-                                'default',
-                                17,
-                                19,
-                                21
-                            ]
-                        },
-                        fontFamily: {
-                            options: [
-                                'default',
-                                'Arial, Helvetica, sans-serif',
-                                'Courier New, Courier, monospace',
-                                'Georgia, serif',
-                                'Lucida Sans Unicode, Lucida Grande, sans-serif',
-                                'Tahoma, Geneva, sans-serif',
-                                'Times New Roman, Times, serif',
-                                'Trebuchet MS, Helvetica, sans-serif',
-                                'Verdana, Geneva, sans-serif'
-                            ]
-                        },
-                        codeBlock: {
-                            languages: [
-                                { language: 'html', label: 'HTML' },
-                                { language: 'css', label: 'CSS' },
-                                { language: 'javascript', label: 'JavaScript' }
-                            ]
-                        },
-                        // Configuración para pegar con limpieza de estilos
-                        clipboard: {
-                            // Permitir pegar pero limpiar ciertos atributos
-                            preventDefaultPasteData: false
-                        },
-                       
-                        // Configuración adicional
-                        removePlugins: ['Title'],
-                        placeholder: 'Escribe aquí tu contenido...',
-                        htmlSupport: {
-                            allow: [
-                                {
-                                    name: /^(p|h[1-6]|div|span|strong|em|b|i|u|br|ul|ol|li|a|img|table|thead|tbody|tr|td|th)$/,
-                                    attributes: ['href', 'src', 'alt', 'title'],
-                                    classes: false,
-                                    styles: false // Esto previene todos los estilos inline incluyendo font-size
-                                }
-                            ],
-                            disallow: [
-                                {
-                                    attributes: ['style']
-                                }
-                            ]
-                        }
-                    })
-                    .then(editor => {
-                        // Sin intervención del ClipboardPipeline para permitir pegado normal
-                        // El problema del fontSize se controla con htmlSupport.styles: false
-                        
-                        // Guardar referencia del editor
-                        $(element).data('ckeditor', editor);
-                        
-                        console.log('CKEditor 5 inicializado correctamente');
-                    })
-                    .catch(error => {
-                        console.error('Error al inicializar CKEditor 5:', error);
-                    });
+  ClassicEditor
+    .create(document.querySelector('.ckeditor'), {
+        language: 'es',
+        toolbar: {
+            items: [
+                'heading',
+                '|',
+                'bold', 'italic', 'underline',
+                '|',
+                'bulletedList', 'numberedList',
+                '|',
+                'link', 'imageUpload', 'blockQuote',
+                '|',
+                'undo', 'redo'
+            ]
+        },
+        list: {
+            properties: {
+                styles: true,
+                startIndex: true,
+                reversed: true
+            }
+        },
+        htmlSupport: {
+            allow: [
+                {
+                    name: /.*/,
+                    attributes: true,
+                    classes: false,
+                    styles: false
+                }
+            ]
+        },
+        clipboard: {
+            preventDefaultPasteData: false
+        }
+    })
+            .then(editor => {
+                console.log('CKEditor listo');
+            })
+            .catch(error => {
+                console.error(error);
             });
 
             // Inicializar dropdowns de Bootstrap
             $('.dropdown-toggle').dropdown();
         });
 
-        // Función para obtener contenido de CKEditor
-        function getCKEditorContent(selector) {
-            const element = $(selector);
-            if (element.length && element.data('ckeditor')) {
-                return element.data('ckeditor').getData();
-            }
-            return '';
-        }
-
-        // Función para establecer contenido en CKEditor
-        function setCKEditorContent(selector, content) {
-            const element = $(selector);
-            if (element.length && element.data('ckeditor')) {
-                element.data('ckeditor').setData(content);
-            }
-        }
-
-        // Función para limpiar CKEditor
-        function clearCKEditor(selector) {
-            setCKEditorContent(selector, '');
-        }
+   
     </script>
 
     @stack('scripts')

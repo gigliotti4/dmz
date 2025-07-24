@@ -38,6 +38,10 @@ class ProductoController extends Controller
             'descripcion' => 'nullable|string',
             'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
             'pdf' => 'nullable|file|mimes:pdf', // Validación para el archivo PDF
+            'video' => 'nullable|url',
+            'videodos' => 'nullable|url',
+            'videotres' => 'nullable|url',
+            'slug' => 'nullable|string|max:255|unique:productos,slug',
             'galeria' => 'nullable|array',
             'galeria.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
             'categoria_id' => 'nullable|exists:categorias,id', // Validación para categoria_id
@@ -48,6 +52,19 @@ class ProductoController extends Controller
 
         // Generar el slug automáticamente
         $data['slug'] = Str::slug($data['nombre']);
+
+        // Procesar URLs de YouTube para formato embed
+        if (!empty($data['video'])) {
+            $data['video'] = $this->getYoutubeEmbedUrl($data['video']);
+        }
+        
+        if (!empty($data['videodos'])) {
+            $data['videodos'] = $this->getYoutubeEmbedUrl($data['videodos']);
+        }
+        
+        if (!empty($data['videotres'])) {
+            $data['videotres'] = $this->getYoutubeEmbedUrl($data['videotres']);
+        }
 
         // Manejo de la carga de la pdf principal
         if ($request->hasFile('pdf')) {
@@ -76,6 +93,8 @@ class ProductoController extends Controller
             $data['galeria'] = json_encode($galeria);
         }
 
+
+
         $producto = Producto::create($data);
 
      
@@ -103,6 +122,11 @@ class ProductoController extends Controller
             'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
             'pdf' => 'nullable|file|mimes:pdf', // Validación para el archivo PDF
             'categoria_id' => 'nullable|exists:categorias,id', // Validación para
+            'video' => 'nullable|',
+            'videodos' => 'nullable|',
+            'videotres' => 'nullable|',
+            'slug' => 'nullable|string|max:255|unique:productos,slug,' . $producto->id,
+            // Validación para la galería de imágenes
             'galeria' => 'nullable|array',
             'galeria.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
            
@@ -112,6 +136,19 @@ class ProductoController extends Controller
 
         // Generar el slug automáticamente
         $data['slug'] = Str::slug($data['nombre']);
+
+        // Procesar URLs de YouTube para formato embed
+        if (!empty($data['video'])) {
+            $data['video'] = $this->getYoutubeEmbedUrl($data['video']);
+        }
+        
+        if (!empty($data['videodos'])) {
+            $data['videodos'] = $this->getYoutubeEmbedUrl($data['videodos']);
+        }
+        
+        if (!empty($data['videotres'])) {
+            $data['videotres'] = $this->getYoutubeEmbedUrl($data['videotres']);
+        }
 
         // Manejo de la carga de la pdf principal
         if ($request->hasFile('pdf')) {
@@ -207,12 +244,24 @@ public function eliminarImagen($id, $key)
 
         return response()->json(['success' => false, 'message' => 'Imagen no encontrada']);
     }
+
+/**
+ * Convierte una URL de YouTube en formato embed
+ * 
+ * @param string $url
+ * @return string
+ */
+private function getYoutubeEmbedUrl($url)
+{
+    $pattern = '/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/';
+    preg_match($pattern, $url, $matches);
     
-
-   
-
-
-
-
+    if (!empty($matches[1])) {
+        return 'https://www.youtube.com/embed/' . $matches[1];
+    }
+    
+    // Si no coincide con el formato conocido, devolvemos la URL original
+    return $url;
+}
 }
 

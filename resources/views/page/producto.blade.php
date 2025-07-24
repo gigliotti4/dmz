@@ -20,6 +20,58 @@
     </div>
 </div>
 
+<style>
+  /* Estilo mejorado para miniaturas Fotorama */
+  .fotorama__nav {
+    text-align: left !important; /* Asegura que las miniaturas empiecen desde la izquierda */
+    margin-top: 10px;
+  }
+
+  .fotorama__thumb {
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+  }
+
+  .fotorama__thumb:hover {
+    opacity: 1;
+  }
+
+  .fotorama__stage {
+    border: 1px solid #e0e0e0; 
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+
+  .fotorama__thumb-border {
+    border-color: #FE6D00 !important;
+    border-radius: 4px;
+    box-shadow: 0 0 8px rgba(254, 109, 0, 0.3);
+  }
+
+  /* Mejorar la navegación */
+  .fotorama__arr {
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+  }
+
+  .fotorama__arr:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+  }
+  
+  /* Asegurar que los contenedores de navegación estén alineados a la izquierda */
+  .fotorama__nav-wrap {
+    text-align: left !important;
+  }
+
+  .fotorama__nav__shaft {
+    margin-left: 0 !important;
+    text-align: left !important;
+  }
+</style>
+
 <div class="container my-5" >
     <div class="row">
       <div class="col-md-6">
@@ -61,11 +113,35 @@
             <a href="{{ route('contacto') }}" class="carousel-btn px-5">
               Consultar
             </a>  
+            <a href="{{ asset(Storage::url($producto->pdf)) }}" download class="carousel-btn px-5">
+             pdf
+            </a>
             </div>
       </div>
     </div>
-</div>
-
+    
+    {{-- Videos de youtube --}}
+    @if($producto->video)
+    <div class="row mt-5">
+      <h3 class="titulo__secciones mb-4">Video</h3>
+        <div class="col-12 col-md-4 ">
+            <div class="ratio ratio-16x9">
+                <iframe src="{{ $producto->video }}" title="" allowfullscreen frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+            </div>
+        </div>
+        <div class="col-12 col-md-4 ">
+            <div class="ratio ratio-16x9">
+                <iframe src="{{ $producto->videodos }}" title="" allowfullscreen frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+            </div>
+        </div>
+        <div class="col-12 col-md-4 ">
+            <div class="ratio ratio-16x9">
+                <iframe src="{{ $producto->videotres }}" title="" allowfullscreen frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+            </div>
+        </div>
+    </div>
+    @endif
+        </div>
 </div>
 
 

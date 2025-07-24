@@ -36,6 +36,21 @@
             <textarea class="form-control ckeditor" name="descripcion" id="descripcion" cols="30" rows="10">{{ $producto->descripcion }}</textarea>
         </div>
     </div>
+    <div class="row">
+        {{-- video --}}
+        <div class="form-group col-md-4">
+            <label for="video">Video</label>
+            <input type="text" class="form-control" id="video" name="video" value="{{ $producto->video }}" placeholder="URL del video">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="videodos">Video 2</label>
+            <input type="text" class="form-control" id="videodos" name="videodos" value="{{ $producto->videodos }}" placeholder="URL del segundo video">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="videotres">Video 3</label>
+            <input type="text" class="form-control" id="videotres" name="videotres" value="{{ $producto->videotres }}" placeholder="URL del tercer video">
+        </div>
+    </div>
 
     
     <div class="row">
