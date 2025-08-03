@@ -11,6 +11,7 @@ use App\Models\Producto;
 use App\Models\Servicio;
 use App\Models\Categoria;
 use App\Models\Novedades;
+use App\Models\Representacion;
 use App\Models\FormularioContacto;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ContactoMail;
@@ -38,7 +39,7 @@ class PageController extends Controller
     $productos = Producto::orderBy('orden', 'asc')->get();
     $categorias = Categoria::orderBy('orden', 'asc')->where('destacado', 1)->get();
     $contacto = Contacto::first(); // Si sólo hay un contacto, puedes usar first()
-    $sliders = Slider::where('seccion', 'inicio')->get();
+    $sliders = Slider::where('seccion', 'inicio')->where('activo', 1)->get();
     $metadata = Metadata::where('section', 'inicio')->first();
 
     // Pasar los datos a la vista
@@ -224,6 +225,19 @@ class PageController extends Controller
         return view('page.novedad', compact('redes', 'contacto', 'logo', 'novedad', 'sliders', 'metadata'));
     }
    
+       public function representaciones(){
+    // Obtener los datos de los modelos
+    $logo = Logo::first();
+    $representaciones = Representacion::first();
+    $redes = Rede::first();
+    $contacto = Contacto::first(); // Si sólo hay un contacto, puedes usar first()
+    $sliders = Slider::where('seccion', 'representaciones')->get();
+    $metadata = Metadata::where('section', 'representaciones')->first();
+
+    // Pasar los datos a la vista
+    return view('page.representaciones', compact('representaciones', 'redes', 'contacto', 'logo', 'sliders', 'metadata'));
+    
+    }
 
     public function contacto(){
         // Obtener los datos de los modelos

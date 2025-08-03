@@ -13,7 +13,7 @@
 
 .item-contact a{
     font-family: 'Roboto';
-    font-weight: 300;
+    font-weight: 400;
     font-size: 16px;
     line-height: 100%;
     letter-spacing: 0%;
@@ -96,7 +96,7 @@
     <div class="col-md-4">
       <div class="info-contact">
         <h3 class="titulo__secciones text-left">Contacto</h3>
-        <p class="subtitulo__secciones">¿Buscas un presupuesto o quieres ponerte en con nosotros? Completa el siguiente formulario y nos comunicaremos lo antes posible</p>
+       
         <div class="item-contact mt-3">
             <i class="fa-solid fa-location-dot"></i>
             <a href="{{$contacto->enlace}}" target="_blank" class="datos__contacto">{{$contacto->direccion}}</a>

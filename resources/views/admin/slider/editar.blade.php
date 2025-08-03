@@ -30,6 +30,12 @@
           <img src="{{ asset(Storage::url($slider->imagen)) }}" class="img-thumbnail w-50">
       @endif
   </div>
+    <div class="form-group col-md-6">
+        <label for="activo">Activo</label>
+        <select class="form-control" id="activo" name="activo">
+            <option value="1" {{ $slider->activo ? 'selected' : '' }}>Sí</option>
+            <option value="0" {{ !$slider->activo ? 'selected' : '' }}>No</option>
+        </select>
   <div class="d-flex justify-content-end">
       <button type="submit" class="btn btn-success">Actualizar</button>
   </div>

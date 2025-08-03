@@ -23,6 +23,13 @@
     <label for="imagen">Imagen o Video (Tamaño recomendado: 1400x600px) </label> <br>
     <input type="file" class="form-control-file mt-3" required id="imagen" name="imagen"> <br>
   </div>
+  <div class="form-group col-md-6">
+    <label for="activo">Activo</label>
+    <select class="form-control" id="activo" name="activo">
+      <option value="1">Sí</option>
+      <option value="0">No</option>
+    </select>
+  </div>
   <div class="d-flex justify-content-end">
     <button type="submit" class="btn btn-success ">Agregar</button>
 

@@ -188,7 +188,7 @@
                 <h5 class="footer__secciones">Secciones</h5>
                 <div class="d-flex flex-column">
                     <a href="{{route('servicios')}}" class="nav__footer">Servicios</a>
-                    <a href="{{route('productos')}}" class="nav__footer">Máquinas</a>
+                    <a href="{{route('categorias')}}" class="nav__footer">Máquinas</a>
                     <a href="{{route('empresa')}}" class="nav__footer">Empresa</a>
                 </div>
             </div>
@@ -197,7 +197,7 @@
             <div class="col-6 col-md-2 mb-4">
                 <h5 class="footer__secciones">Enlaces</h5>
                 <div class="d-flex flex-column">
-                    <a href="{{route('servicios')}}" class="nav__footer">Representación SANCO</a>
+                    <a href="{{route('representaciones')}}" class="nav__footer">Representación SANCO</a>
                     <a href="{{route('novedades')}}" class="nav__footer">Novedades</a>
                     <a href="{{route('contacto')}}" class="nav__footer">Contacto</a>
                 </div>

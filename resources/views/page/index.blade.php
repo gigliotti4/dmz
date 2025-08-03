@@ -3,40 +3,68 @@
 @section('content')
 
 
-<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000" data-bs-pause="false" >
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000" data-bs-pause="false">
+    <!-- Indicadores en la parte superior (opcional) -->
+    <div class="carousel-indicators">
+        @foreach($sliders as $index => $slider)
+            <button type="button" 
+                    data-bs-target="#carouselExampleIndicators" 
+                    data-bs-slide-to="{{ $index }}" 
+                    class="{{ $index == 0 ? 'active' : '' }}" 
+                    aria-current="{{ $index == 0 ? 'true' : 'false' }}" 
+                    aria-label="Slide {{ $index + 1 }}">
+            </button>
+        @endforeach
+    </div>
+
+    <!-- Contenido del carousel -->
     <div class="carousel-inner">
         @foreach($sliders as $index => $slider)
             @if(Str::contains($slider->imagen, ['.mp4', '.mov', '.avi']))
                 <!-- Elemento - Video -->
                 <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
-                    <div class="carousel-video-wrapper">
-                        <video class="carousel-video" autoplay loop muted>
+                    <div class="carousel-video-wrapper position-relative">
+                        <video class="carousel-video w-100" autoplay loop muted playsinline>
                             <source src="{{ asset(Storage::url($slider->imagen)) }}" type="video/mp4">
                             Tu navegador no soporta video HTML5.
                         </video>
-                        <div class="carousel-content">
-                            <div class="carousel-text">
-                                <div class="container">
-                                <h1 class="carousel-title">{{ $slider->titulo }}</h1>
-                                <p class="carousel-subtitle">{!! $slider->descripcion !!}</p>
-                                <a href="{{ route('contacto') }}" class="carousel-btn">MÁS INFORMACIÓN</a>
-                                </div>
+                        
+                        <!-- Overlay para el contenido -->
+                        <div class="carousel-caption d-flex align-items-center justify-content-center h-100">
+                            <div class="container text-center">
+                                <h1 class="carousel-title display-4 fw-bold text-white mb-3">
+                                    {{ $slider->titulo }}
+                                </h1>
+                                <p class="carousel-subtitle lead text-white mb-4">
+                                    {!! $slider->descripcion !!}
+                                </p>
+                                <a href="{{ route('contacto') }}" class=" btn-lg carousel-btn">
+                                    MÁS INFORMACIÓN
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
             @else
-                <!-- Elemento - Imagen como background -->
+                <!-- Elemento - Imagen -->
                 <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
-                    <img src="{{ asset(Storage::url($slider->imagen)) }}" class="carousel-imagen" alt="{{ $slider->titulo }}">
+                    <img src="{{ asset(Storage::url($slider->imagen)) }}" 
+                         class="d-block w-100 carousel-imagen" 
+                         alt="{{ $slider->titulo }}"
+                         style="height: 700px; object-fit: cover;">
                     
-                    <div class="carousel-content">
-                            <div class="container">
-                            <div class="carousel-text">
-                                <h1 class="carousel-title">{{ $slider->titulo }}</h1>
-                                <p class="carousel-subtitle">{!! $slider->descripcion !!}</p>
-                                <a href="{{ route('contacto') }}" class="carousel-btn">MÁS INFORMACIÓN</a>
-                            </div>
+                    <!-- Overlay para el contenido -->
+                    <div class="carousel-caption d-flex align-items-center justify-content-center h-100">
+                        <div class="container text-center">
+                            <h1 class="carousel-title display-4 fw-bold text-white mb-3">
+                                {{ $slider->titulo }}
+                            </h1>
+                            <p class="carousel-subtitle lead text-white mb-4">
+                                {!! $slider->descripcion !!}
+                            </p>
+                            <a href="{{ route('contacto') }}" class=" btn-lg carousel-btn">
+                                MÁS INFORMACIÓN
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -44,17 +72,19 @@
         @endforeach
     </div>
 
-    <!-- Indicadores en la parte inferior -->
-    <div class="carousel-indicators">
-        @foreach($sliders as $index => $slider)
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $index }}" class="{{ $index == 0 ? 'active' : '' }}" aria-current="{{ $index == 0 ? 'true' : 'false' }}" aria-label="Slide {{ $index + 1 }}"></button>
-        @endforeach
-    </div>
+    <!-- Controles de navegación -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Anterior</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Siguiente</span>
+    </button>
 </div>
 
 <div class="container my-5">
  <h3 class="text-center mb-5 titulo-secciones" data-aos="fade-up">Nuestras Categorías</h3>
-
     <div class="row mt-4">
         @foreach($categorias as $categoria)
         <div class="col-md-6 mb-4">

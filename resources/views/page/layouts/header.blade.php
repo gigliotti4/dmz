@@ -26,7 +26,7 @@
                     <a class="nav-link nav__menu__inicio {{ request()->routeIs('contacto') ? 'active__header' : '' }}" href="{{ route('contacto') }}">Contacto</a>
                 </li>
                 <li class="nav-item">
-                    <a class="btn btn-light fw-bold px-3 py-2 ms-2 d-flex align-items-center justify-content-center" href="#" style="border-radius: 0; color: #ff6600;">
+                    <a class="btn btn-light fw-bold px-3 py-2 ms-2 d-flex align-items-center justify-content-center" href="{{ route('representaciones') }}" style="border-radius: 0; color: #ff6600;">
                         REPRESENTACIÓN SANCO
                     </a>
                 </li>
@@ -61,7 +61,7 @@
                 <a class="nav-link nav__menu__inicio {{ request()->routeIs('contacto') ? 'active__header' : '' }}" href="{{ route('contacto') }}">Contacto</a>
             </li>
             <li class="nav-item mt-3">
-                <a class="btn btn-light fw-bold w-100 py-2 d-flex align-items-center justify-content-center" href="#" style="border-radius: 0; color: #ff6600;">
+                <a class="btn btn-light fw-bold w-100 py-2 d-flex align-items-center justify-content-center" href="{{ route('representaciones') }} style="border-radius: 0; color: #ff6600;">
                     REPRESENTACIÓN SANCO
                 </a>
             </li>

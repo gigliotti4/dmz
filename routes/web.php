@@ -14,6 +14,8 @@ Route::get('/categoria/{slug}', [App\Http\Controllers\PageController::class, 'ca
 Route::get('/productos', [App\Http\Controllers\PageController::class, 'productos'])->name('productos');
 Route::get('/producto/{slug}', [App\Http\Controllers\PageController::class, 'producto'])->name('producto');
 Route::get('/productos/categoria/{slug}', [App\Http\Controllers\PageController::class, 'productosPorCategoria'])->name('productos.categoria');
+// representaciones
+Route::get('/representaciones', [App\Http\Controllers\PageController::class, 'representaciones'])->name('representaciones');
 
 Route::get('/novedades', [App\Http\Controllers\PageController::class, 'novedades'])->name('novedades');
 Route::get('/novedad/{id}', [App\Http\Controllers\PageController::class, 'novedad'])->name('novedad');
@@ -72,6 +74,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
             Route::put('/update/{id}', [App\Http\Controllers\admin\RedeController::class, 'update'])->name('update');
         });
 
+        // Representaciones routes
+        Route::prefix('representaciones')->name('representaciones.')->group(function () {
+           
+            Route::get('/edit/{id}', [App\Http\Controllers\admin\RepresentacionController::class, 'edit'])->name('edit');
+            Route::put('/update/{id}', [App\Http\Controllers\admin\RepresentacionController::class, 'update'])->name('update');
+            Route::delete('destroy/{id}', [App\Http\Controllers\admin\RepresentacionController::class, 'destroy'])->name('destroy');
+         
+          });   
         // Productos routes
         Route::prefix('productos')->name('productos.')->group(function () {
             Route::get('/', [App\Http\Controllers\admin\ProductoController::class, 'index'])->name('index');

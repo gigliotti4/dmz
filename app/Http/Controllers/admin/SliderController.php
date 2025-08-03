@@ -26,6 +26,8 @@ class SliderController extends Controller
         $slider->orden = $request->orden;
         $slider->titulo = $request->titulo;
         $slider->descripcion = $request->descripcion;
+        // boolean activo
+        $slider->activo = $request->activo ? true : false; // Asegur
         $slider->seccion = $seccion;
 
         if ($request->hasFile('imagen')) {
@@ -69,6 +71,7 @@ class SliderController extends Controller
         $slider->orden = $request->orden;
         $slider->titulo = $request->titulo;
         $slider->descripcion = $request->descripcion;
+        $slider->activo = $request->activo ? true : false; // Asegur
         $slider->imagen = $path;
         $slider->seccion = $seccion;
         $slider->save();
