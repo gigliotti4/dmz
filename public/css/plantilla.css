@@ -88,7 +88,17 @@ a{
 
 
 
-
+  
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+        .dropdown-menu {
+            margin-top: 0;
+        }
+        .dropdown-item:hover {
+            background-color: #333;
+        }
+  
 
 
 

@@ -137,7 +137,7 @@
     <div class="banner-content">    
         <h5 class="">¿Tenés un proyecto? Hablemos</h5>
         <p class="">Te ayudamos a encontrar la solución más eficiente.</p>
-        <a href="{{ route('contacto') }}" class="carousel-btn">contactanos</a>
+        <a href="{{ route('contacto') }}" class="carousel-btn">Contactanos</a>
     </div>
 </div>
 

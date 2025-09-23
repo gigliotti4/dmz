@@ -51,14 +51,16 @@ class PageController extends Controller
     // Obtener los datos de los modelos
     $logo = Logo::first();
     $empresa = Empresa::first();
+    $servicios = Servicio::orderBy('orden', 'asc')->get();
+     $categorias = Categoria::orderBy('orden', 'asc')->get();
     $redes = Rede::first();
     $contacto = Contacto::first(); // Si sólo hay un contacto, puedes usar first()
     $sliders = Slider::where('seccion', 'empresa')->get();
     $metadata = Metadata::where('section', 'empresa')->first();
 
     // Pasar los datos a la vista
-    return view('page.empresa', compact('empresa', 'redes', 'contacto', 'logo', 'sliders', 'metadata'));
-    
+    return view('page.empresa', compact('empresa', 'redes', 'contacto', 'logo', 'sliders', 'metadata', 'servicios', 'categorias'));
+
     }
 
     public function servicios(){
@@ -70,25 +72,27 @@ class PageController extends Controller
         $contacto = Contacto::first(); // Si sólo hay un contacto, puedes usar first()
         $sliders = Slider::where('seccion', 'servicios')->get();
         $metadata = Metadata::where('section', 'servicios')->first();
+         $categorias = Categoria::orderBy('orden', 'asc')->get();
         
         // Pasar los datos a la vista
-        return view('page.servicios', compact('servicios', 'redes', 'contacto', 'logo', 'sliders', 'inicio', 'metadata'));
-        
+        return view('page.servicios', compact('servicios', 'redes', 'contacto', 'logo', 'sliders', 'inicio', 'metadata', 'categorias'));
+
     }
     
     public function servicio($slug){
         // Obtener los datos de los modelos
         $logo = Logo::first();
         $inicio = Inicio::first();
+        $servicios = Servicio::orderBy('orden', 'asc')->get();
         $servicio = Servicio::where('slug', $slug)->firstOrFail(); // Buscar el servicio por el slug
         $redes = Rede::first();
         $contacto = Contacto::first(); // Si sólo hay un contacto, puedes usar first()
         $sliders = Slider::where('seccion', 'servicios')->get();
         $metadata = Metadata::where('section', 'servicios')->first();
-        
+         $categorias = Categoria::orderBy('orden', 'asc')->get();
         // Pasar los datos a la vista
-        return view('page.servicio', compact('servicio', 'redes', 'contacto', 'logo', 'sliders', 'inicio', 'metadata'));
-        
+        return view('page.servicio', compact('servicio', 'redes', 'contacto', 'logo', 'sliders', 'inicio', 'metadata', 'servicios', 'categorias'));
+
     }
     
 
@@ -123,6 +127,7 @@ class PageController extends Controller
         $logo = Logo::first();
         $inicio = Inicio::first();
         $redes = Rede::first();
+        $servicios = Servicio::orderBy('orden', 'asc')->get();
         $contacto = Contacto::first();
         $sliders = Slider::where('seccion', 'categorias')->get();
         // Obtener todas las categorias  
@@ -130,7 +135,7 @@ class PageController extends Controller
         $metadata = Metadata::where('section', 'categorias')->first();
     
         // Pasar los datos a la vista
-        return view('page.categorias', compact('inicio', 'redes', 'contacto', 'logo', 'categorias', 'sliders', 'metadata'));
+        return view('page.categorias', compact('inicio', 'redes', 'contacto', 'logo', 'categorias', 'sliders', 'metadata', 'servicios', 'productos'));
     }
     
     public function categoriaProductos($slug)
@@ -139,10 +144,10 @@ class PageController extends Controller
         $logo = Logo::first();
         $redes = Rede::first();
         $contacto = Contacto::first();
-        
+           $categorias = Categoria::orderBy('orden', 'asc')->get();
         // Buscar la categoría por slug
         $categoria = Categoria::where('slug', $slug)->firstOrFail();
-        
+            $servicios = Servicio::orderBy('orden', 'asc')->get();
         // Obtener los productos de esa categoría
         $productos = Producto::where('categoria_id', $categoria->id)
                     ->orderBy('orden', 'asc')
@@ -157,9 +162,11 @@ class PageController extends Controller
             'categoria', 
             'logo', 
             'redes', 
-            'contacto', 
-            'sliders', 
-            'metadata'
+            'contacto',
+            'sliders',
+            'metadata',
+            'servicios',
+            'categorias'
         ));
     }
 
@@ -171,12 +178,14 @@ class PageController extends Controller
         $redes = Rede::first();
         $contacto = Contacto::first();
         $sliders = Slider::where('seccion', 'productos')->get();
+            $servicios = Servicio::orderBy('orden', 'asc')->get();
+               $categorias = Categoria::orderBy('orden', 'asc')->get();
         // Obtener todas las productos  
         $productos = Producto::orderBy('orden', 'asc')->get();
         $metadata = Metadata::where('section', 'productos')->first();
     
         // Pasar los datos a la vista
-        return view('page.productos', compact('empresa', 'redes', 'contacto', 'logo', 'productos', 'sliders', 'metadata'));
+        return view('page.productos', compact('empresa', 'redes', 'contacto', 'logo', 'productos', 'sliders', 'metadata', 'servicios', 'categorias'));
     }
         
 
@@ -188,13 +197,14 @@ class PageController extends Controller
         $redes = Rede::first();
         $contacto = Contacto::first();
         $sliders = Slider::where('seccion', 'productos')->get();
-        
+            $servicios = Servicio::orderBy('orden', 'asc')->get();
+               $categorias = Categoria::orderBy('orden', 'asc')->get();
         // Buscar el producto por el slug en lugar de por ID
         $producto = Producto::where('slug', $slug)->firstOrFail();
         $metadata = Metadata::where('section', 'productos')->first();
         
         // Pasar los datos a la vista
-        return view('page.producto', compact('empresa', 'redes', 'contacto', 'logo', 'producto', 'sliders', 'metadata'));
+        return view('page.producto', compact('empresa', 'redes', 'contacto', 'logo', 'producto', 'sliders', 'metadata', 'servicios', 'categorias'));
     }
             
 
@@ -204,12 +214,14 @@ class PageController extends Controller
         $logo = Logo::first();
         $redes = Rede::first();
         $sliders = Slider::where('seccion', 'novedades')->get();
+            $servicios = Servicio::orderBy('orden', 'asc')->get();
+               $categorias = Categoria::orderBy('orden', 'asc')->get();
         $contacto = Contacto::first(); // Si sólo hay un contacto, puedes usar first()
         $novedades = Novedades::orderBy('orden', 'asc')->get();
         $metadata = Metadata::where('section', 'novedades')->first();
         
         // Pasar los datos a la vista
-        return view('page.novedades', compact('redes', 'contacto', 'logo', 'novedades', 'sliders', 'metadata'));
+        return view('page.novedades', compact('redes', 'contacto', 'logo', 'novedades', 'sliders', 'metadata', 'servicios', 'categorias'));
     }
     
     public function novedad($id){
@@ -217,26 +229,30 @@ class PageController extends Controller
         $logo = Logo::first();
         $redes = Rede::first();
         $sliders = Slider::where('seccion', 'novedades')->get();
+            $servicios = Servicio::orderBy('orden', 'asc')->get();
+               $categorias = Categoria::orderBy('orden', 'asc')->get();
         $contacto = Contacto::first(); // Si sólo hay un contacto, puedes usar first()
         $novedad = Novedades::find($id);
         $metadata = Metadata::where('section', 'novedades')->first();
         
         // Pasar los datos a la vista
-        return view('page.novedad', compact('redes', 'contacto', 'logo', 'novedad', 'sliders', 'metadata'));
+        return view('page.novedad', compact('redes', 'contacto', 'logo', 'novedad', 'sliders', 'metadata', 'servicios', 'categorias'));
     }
    
        public function representaciones(){
     // Obtener los datos de los modelos
     $logo = Logo::first();
     $representaciones = Representacion::first();
+        $servicios = Servicio::orderBy('orden', 'asc')->get();
     $redes = Rede::first();
     $contacto = Contacto::first(); // Si sólo hay un contacto, puedes usar first()
     $sliders = Slider::where('seccion', 'representaciones')->get();
     $metadata = Metadata::where('section', 'representaciones')->first();
+       $categorias = Categoria::orderBy('orden', 'asc')->get();
 
     // Pasar los datos a la vista
-    return view('page.representaciones', compact('representaciones', 'redes', 'contacto', 'logo', 'sliders', 'metadata'));
-    
+    return view('page.representaciones', compact('representaciones', 'redes', 'contacto', 'logo', 'sliders', 'metadata', 'servicios', 'categorias'));
+
     }
 
     public function contacto(){
@@ -245,10 +261,11 @@ class PageController extends Controller
         $redes = Rede::first();
         $contacto = Contacto::first(); // Si sólo hay un contacto, puedes usar first()
         $sliders = Slider::where('seccion', 'contacto')->get();
+            $servicios = Servicio::orderBy('orden', 'asc')->get();
         $metadata = Metadata::where('section', 'contacto')->first();
-        
+           $categorias = Categoria::orderBy('orden', 'asc')->get();
         // Pasar los datos a la vista
-        return view('page.contacto', compact('redes', 'contacto', 'logo', 'sliders', 'metadata'));
+        return view('page.contacto', compact('redes', 'contacto', 'logo', 'sliders', 'metadata', 'servicios', 'categorias'));
     }
 
     public function presupuesto(){

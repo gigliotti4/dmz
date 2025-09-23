@@ -60,7 +60,7 @@
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
 }
 
-.carousel-btn {
+/* .carousel-btn {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease;
 }
@@ -68,7 +68,7 @@
 .carousel-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
-}
+} */
 
 .carousel-indicators {
     bottom: 20px;
@@ -101,12 +101,14 @@
     background-color: #FE6D00;
     color: white;
     padding: 10px 20px;
+    border: 1px solid #FE6D00;
     border-radius: 5px;
     text-decoration: none;
 }
 .carousel-btn:hover {
-    background-color: #e65c00;
-    color: white;
+    background-color: #fff;
+      border: 1px solid #FE6D00;
+    color: #e65c00;
 }
 .titulo-secciones, .titulo__secciones{
     font-family: 'Roboto';
@@ -414,7 +416,7 @@ text-align: center;
 
 /* ===== TARJETAS DE PRODUCTOS ===== */
 .card-img-categoria {
-    background-size: cover;
+    background-size: contain;
     background-position: center;
     height: 380px;
     overflow: hidden;
@@ -461,8 +463,8 @@ text-align: center;
     color: white;
     font-family: 'Roboto';
     font-weight: 700;
-    font-size: 32px;
-    line-height: 130%;
+    font-size: 24px;
+    line-height: normal;
     letter-spacing: 0%;
 }
 

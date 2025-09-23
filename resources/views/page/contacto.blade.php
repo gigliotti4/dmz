@@ -150,7 +150,7 @@
     <div class="row">
         <div class="col-md-12 mb-4">
             <label for="message" class="form-label">Mensaje</label>
-            <textarea class="form-control" id="message" name="message" rows="5" placeholder="Escriba su mensaje aquí..."></textarea>
+            <textarea class="form-control" id="message" name="message" rows="5" ></textarea>
             <div class="invalid-feedback" id="message-error"></div>
         </div>
         <div class="col-md-12 text-end">

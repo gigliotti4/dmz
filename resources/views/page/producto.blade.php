@@ -74,37 +74,61 @@
 
 <div class="container my-5" >
     <div class="row">
-      <div class="col-md-6">
-        <!-- Fotorama -->
-        <div class="fotorama" 
-            data-arrows="true" 
-            data-click="true" 
-            data-swipe="true" 
-            data-width="100%"
-            data-height="500" 
-            data-ratio="16/9"
-            data-fit="cover"
-            data-transition="crossfade"
-            data-nav="thumbs"
-            >
-          @if(isset($producto->galeria) && !empty($producto->galeria))
-            @php
-              // Verificar si galería ya es un array o necesita ser convertido
-              $imagenes = is_array($producto->galeria) ? $producto->galeria : explode(',', $producto->galeria);
-            @endphp
-            
-            @foreach($imagenes as $imagen)
-              <a href="{{ asset(Storage::url($imagen)) }}">
-                <img src="{{ asset(Storage::url($imagen)) }}" alt="{{ $producto->nombre }}">
-              </a>
-            @endforeach
-          @elseif($producto->imagen)
-              <a href="{{ asset(Storage::url($producto->imagen)) }}">
-                <img src="{{ asset(Storage::url($producto->imagen)) }}" alt="{{ $producto->nombre }}">
-              </a>
-          @endif
-        </div>
-      </div>
+<div class="col-md-6">
+  <!-- Fotorama -->
+  <div class="fotorama" 
+      data-arrows="true" 
+      data-click="true" 
+      data-swipe="true" 
+      data-width="100%"
+      data-height="500" 
+      data-ratio="16/9"
+      data-fit="contain"
+      data-transition="crossfade"
+      data-nav="thumbs"
+      >
+    @php
+      // Mejorar el procesamiento de la galería
+      $galeria = $producto->galeria ?? '';
+      $imagenes = [];
+      
+      // Comprobar si es una cadena JSON y decodificarla
+      if (is_string($galeria) && !empty($galeria)) {
+          $jsonDecoded = json_decode($galeria, true);
+          if (json_last_error() === JSON_ERROR_NONE && is_array($jsonDecoded)) {
+              $imagenes = $jsonDecoded;
+          } else {
+              // Si no es JSON válido, intentar como CSV
+              $imagenes = explode(',', $galeria);
+          }
+      } elseif (is_array($galeria)) {
+          $imagenes = $galeria;
+      }
+      
+      // Filtrar valores vacíos
+      $imagenes = array_filter($imagenes);
+    @endphp
+
+    @if(count($imagenes) > 0)
+        @foreach($imagenes as $imagen)
+          <a href="{{ asset(Storage::url($imagen)) }}">
+            <img src="{{ asset(Storage::url($imagen)) }}" alt="{{ $producto->nombre }}">
+          </a>
+        @endforeach
+    @elseif(!empty($producto->imagen))
+        <a href="{{ asset(Storage::url($producto->imagen)) }}">
+          <img src="{{ asset(Storage::url($producto->imagen)) }}" alt="{{ $producto->nombre }}">
+        </a>
+    @else
+        {{-- Imagen por defecto si no hay galería ni imagen --}}
+        <a href="{{ asset('images/no-image.png') }}">
+          <img src="{{ asset('images/no-image.png') }}" alt="Sin imagen disponible">
+        </a>
+    @endif
+  </div>
+</div>
+
+
       <div class="col-md-6">
         <div class="d-flex flex-column h-100">
           <h3 class="titulo__secciones">{{ $producto->nombre }}</h3>
@@ -112,10 +136,12 @@
           <div class="mt-auto">
             <a href="{{ route('contacto') }}" class="carousel-btn px-5">
               Consultar
-            </a>  
-            <a href="{{ asset(Storage::url($producto->pdf)) }}" download class="carousel-btn px-5">
-             pdf
+            </a> 
+            @isset($producto->pdf) 
+            <a href="{{ asset(Storage::url($producto->pdf)) }}" download class="carousel-btn px-5 ms-5">
+             PDF
             </a>
+            @endisset
             </div>
       </div>
     </div>

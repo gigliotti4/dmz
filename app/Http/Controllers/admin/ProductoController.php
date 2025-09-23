@@ -78,7 +78,7 @@ class ProductoController extends Controller
         if ($request->hasFile('imagen')) {
             $image = $request->file('imagen');
             $imageName = $image->getClientOriginalName();
-            $imagePath = $image->storeAs('galeria', $imageName, 'public');
+            $imagePath = $image->storeAs('productos', $imageName, 'public');
             $data['imagen'] = $imagePath;
         }
 
@@ -87,7 +87,7 @@ class ProductoController extends Controller
             $galeria = [];
             foreach ($request->file('galeria') as $image) {
                 $imageName = $image->getClientOriginalName();
-                $imagePath = $image->storeAs('productos', $imageName, 'public');
+                $imagePath = $image->storeAs('galeria', $imageName, 'public');
                 $galeria[] = $imagePath;
             }
             $data['galeria'] = json_encode($galeria);
@@ -174,9 +174,9 @@ class ProductoController extends Controller
         
   
         // Manejo de la carga de la galería de imágenes
-       if ($request->hasFile('galeria')) {
+        if ($request->hasFile('galeria')) {
             // Obtener la galería existente
-            $galeriaExistente = $servicio->galeria ?? [];
+            $galeriaExistente = $producto->galeria ?? [];
             
             // Asegurar que sea un array
             if (is_string($galeriaExistente)) {
@@ -190,11 +190,13 @@ class ProductoController extends Controller
             
             // Guardar las nuevas imágenes
             foreach ($request->file('galeria') as $file) {
-                $galeriaExistente[] = $file->storeAs('galeria', $file->getClientOriginalName(), 'public');
+                $imageName = $file->getClientOriginalName();
+                $imagePath = $file->storeAs('galeria', $imageName, 'public');
+                $galeriaExistente[] = $imagePath;
             }
             
-            // Guardar la galería combinada
-            $data['galeria'] = $galeriaExistente;
+            // Guardar la galería combinada como JSON (igual que en store)
+            $data['galeria'] = json_encode($galeriaExistente);
         }
 
         $producto->update($data);

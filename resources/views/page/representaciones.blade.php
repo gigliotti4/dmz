@@ -31,12 +31,13 @@
         <div class="d-flex flex-column h-100">
           <h3 class="titulo__secciones">{{ $representaciones->titulo }}</h3>
           <div class="contenido__descripcion custom-item mt-3">{!! $representaciones->descripcion !!}</div>
-          <div class="mt-auto">
+          {{--  --}}
+          <div class=" mt-auto flex gap-4">
             <a href="{{ route('contacto') }}" class="carousel-btn px-5">
               Consultar
             </a>  
-            <a href="{{ asset(Storage::url($representaciones->pdf)) }}" download class="carousel-btn px-5">
-             pdf
+            <a href="{{ asset(Storage::url($representaciones->pdf)) }}" download class="carousel-btn px-5 ms-5">
+             PDF
             </a>
             </div>
       </div>

@@ -31,7 +31,7 @@
 
 
     <div class="row">
-        <div class="form-group col-md-12">
+    <div class="form-group col-md-12">
             <label for="descripcion">Descripción</label>
             <textarea class="form-control ckeditor" name="descripcion" id="descripcion" cols="30" rows="10">{{ $producto->descripcion }}</textarea>
         </div>
@@ -74,21 +74,42 @@
   <div class="form-group col-md-6 my-3 ">
         <label for="galeria">Galería 288x288px</label> <br>
         <input type="file" class="form-control-file" id="galeria" name="galeria[]" multiple>
-        @if ($producto->galeria)
-        <div class="image-gallery d-flex flex-wrap my-5">
-            @foreach ($producto->galeria as $key => $galerias)
-                <div class="image-container position-relative mr-2 mb-2" id="image-{{ $key }}">
-                    <img src="{{ asset(Storage::url($galerias)) }}" alt="" class="gallery-image">
-                    <button class="btn btn-danger btn-sm delete-image position-absolute" data-id="{{ $producto->id }}" data-key="{{ $key }}">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-            @endforeach
-        </div>
+        @php
+            // Normalizar galería a array seguro para evitar errores en foreach
+            $galeriaItems = [];
+            if (!empty($producto->galeria)) {
+                if (is_array($producto->galeria)) {
+                    $galeriaItems = $producto->galeria;
+                } elseif (is_string($producto->galeria)) {
+                    $str = trim($producto->galeria);
+                    // Si parece JSON, intentar decodificar
+                    if ((str_starts_with($str, '[') && str_ends_with($str, ']')) || (str_starts_with($str, '"') && str_ends_with($str, '"'))) {
+                        $decoded = json_decode($str, true);
+                        if (json_last_error() === JSON_ERROR_NONE && is_array($decoded)) {
+                            $galeriaItems = $decoded;
+                        }
+                    }
+                    // Si sigue vacío, intentar CSV separado por comas
+                    if (empty($galeriaItems)) {
+                        $galeriaItems = array_filter(array_map('trim', explode(',', $str)));
+                    }
+                }
+            }
+        @endphp
+
+        @if (!empty($galeriaItems))
+            <div class="image-gallery d-flex flex-wrap my-5">
+                @foreach ($galeriaItems as $key => $galerias)
+                    <div class="image-container position-relative mr-2 mb-2" id="image-{{ $key }}">
+                        <img src="{{ asset(Storage::url($galerias)) }}" alt="" class="gallery-image">
+                        <button class="btn btn-danger btn-sm delete-image position-absolute" data-id="{{ $producto->id }}" data-key="{{ $key }}">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                @endforeach
+            </div>
         @else
-            @if (!empty($producto->galeria))
-                <p>No hay imágenes en la galería.</p>
-            @endif
+            <p class="text-muted">No hay imágenes en la galería.</p>
         @endif
     </div> 
    
